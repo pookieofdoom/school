@@ -1,0 +1,264 @@
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+11  12  
+
+32  35  
+
+Matrix Multiplication of 2x2
+Cache Size: 16	Associativity: 1
+Total Reads: 24	Total Writes: 8	 Ratio: 3
+Hits: 8	Misses: 24	Hit Rate: 0.25
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+11  12  
+
+32  35  
+
+Matrix Multiplication of 2x2
+Cache Size: 16	Associativity: 2
+Total Reads: 24	Total Writes: 8	 Ratio: 3
+Hits: 5	Misses: 27	Hit Rate: 0.16
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+11  12  
+
+32  35  
+
+Matrix Multiplication of 2x2
+Cache Size: 16	Associativity: 4
+Total Reads: 24	Total Writes: 8	 Ratio: 3
+Hits: 15	Misses: 17	Hit Rate: 0.47
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+735  780  825  870  915  960  1005  1050  1095  1140  
+
+880  935  990  1045  1100  1155  1210  1265  1320  1375  
+
+1025  1090  1155  1220  1285  1350  1415  1480  1545  1610  
+
+1170  1245  1320  1395  1470  1545  1620  1695  1770  1845  
+
+1315  1400  1485  1570  1655  1740  1825  1910  1995  2080  
+
+1460  1555  1650  1745  1840  1935  2030  2125  2220  2315  
+
+1605  1710  1815  1920  2025  2130  2235  2340  2445  2550  
+
+1750  1865  1980  2095  2210  2325  2440  2555  2670  2785  
+
+1895  2020  2145  2270  2395  2520  2645  2770  2895  3020  
+
+2040  2175  2310  2445  2580  2715  2850  2985  3120  3255  
+
+Matrix Multiplication of 10x10
+Cache Size: 16	Associativity: 1
+Total Reads: 3000	Total Writes: 1000	 Ratio: 3
+Hits: 1191	Misses: 2809	Hit Rate: 0.30
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+735  780  825  870  915  960  1005  1050  1095  1140  
+
+880  935  990  1045  1100  1155  1210  1265  1320  1375  
+
+1025  1090  1155  1220  1285  1350  1415  1480  1545  1610  
+
+1170  1245  1320  1395  1470  1545  1620  1695  1770  1845  
+
+1315  1400  1485  1570  1655  1740  1825  1910  1995  2080  
+
+1460  1555  1650  1745  1840  1935  2030  2125  2220  2315  
+
+1605  1710  1815  1920  2025  2130  2235  2340  2445  2550  
+
+1750  1865  1980  2095  2210  2325  2440  2555  2670  2785  
+
+1895  2020  2145  2270  2395  2520  2645  2770  2895  3020  
+
+2040  2175  2310  2445  2580  2715  2850  2985  3120  3255  
+
+Matrix Multiplication of 10x10
+Cache Size: 16	Associativity: 2
+Total Reads: 3000	Total Writes: 1000	 Ratio: 3
+Hits: 1215	Misses: 2785	Hit Rate: 0.30
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+735  780  825  870  915  960  1005  1050  1095  1140  
+
+880  935  990  1045  1100  1155  1210  1265  1320  1375  
+
+1025  1090  1155  1220  1285  1350  1415  1480  1545  1610  
+
+1170  1245  1320  1395  1470  1545  1620  1695  1770  1845  
+
+1315  1400  1485  1570  1655  1740  1825  1910  1995  2080  
+
+1460  1555  1650  1745  1840  1935  2030  2125  2220  2315  
+
+1605  1710  1815  1920  2025  2130  2235  2340  2445  2550  
+
+1750  1865  1980  2095  2210  2325  2440  2555  2670  2785  
+
+1895  2020  2145  2270  2395  2520  2645  2770  2895  3020  
+
+2040  2175  2310  2445  2580  2715  2850  2985  3120  3255  
+
+Matrix Multiplication of 10x10
+Cache Size: 16	Associativity: 4
+Total Reads: 3000	Total Writes: 1000	 Ratio: 3
+Hits: 1340	Misses: 2660	Hit Rate: 0.34
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+11  12  
+
+32  35  
+
+Matrix Multiplication of 2x2
+Cache Size: 256	Associativity: 1
+Total Reads: 24	Total Writes: 8	 Ratio: 3
+Hits: 12	Misses: 20	Hit Rate: 0.38
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+11  12  
+
+32  35  
+
+Matrix Multiplication of 2x2
+Cache Size: 256	Associativity: 2
+Total Reads: 24	Total Writes: 8	 Ratio: 3
+Hits: 12	Misses: 20	Hit Rate: 0.38
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+11  12  
+
+32  35  
+
+Matrix Multiplication of 2x2
+Cache Size: 256	Associativity: 4
+Total Reads: 24	Total Writes: 8	 Ratio: 3
+Hits: 12	Misses: 20	Hit Rate: 0.38
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+735  780  825  870  915  960  1005  1050  1095  1140  
+
+880  935  990  1045  1100  1155  1210  1265  1320  1375  
+
+1025  1090  1155  1220  1285  1350  1415  1480  1545  1610  
+
+1170  1245  1320  1395  1470  1545  1620  1695  1770  1845  
+
+1315  1400  1485  1570  1655  1740  1825  1910  1995  2080  
+
+1460  1555  1650  1745  1840  1935  2030  2125  2220  2315  
+
+1605  1710  1815  1920  2025  2130  2235  2340  2445  2550  
+
+1750  1865  1980  2095  2210  2325  2440  2555  2670  2785  
+
+1895  2020  2145  2270  2395  2520  2645  2770  2895  3020  
+
+2040  2175  2310  2445  2580  2715  2850  2985  3120  3255  
+
+Matrix Multiplication of 10x10
+Cache Size: 256	Associativity: 1
+Total Reads: 3000	Total Writes: 1000	 Ratio: 3
+Hits: 2700	Misses: 1300	Hit Rate: 0.68
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+735  780  825  870  915  960  1005  1050  1095  1140  
+
+880  935  990  1045  1100  1155  1210  1265  1320  1375  
+
+1025  1090  1155  1220  1285  1350  1415  1480  1545  1610  
+
+1170  1245  1320  1395  1470  1545  1620  1695  1770  1845  
+
+1315  1400  1485  1570  1655  1740  1825  1910  1995  2080  
+
+1460  1555  1650  1745  1840  1935  2030  2125  2220  2315  
+
+1605  1710  1815  1920  2025  2130  2235  2340  2445  2550  
+
+1750  1865  1980  2095  2210  2325  2440  2555  2670  2785  
+
+1895  2020  2145  2270  2395  2520  2645  2770  2895  3020  
+
+2040  2175  2310  2445  2580  2715  2850  2985  3120  3255  
+
+Matrix Multiplication of 10x10
+Cache Size: 256	Associativity: 2
+Total Reads: 3000	Total Writes: 1000	 Ratio: 3
+Hits: 2502	Misses: 1498	Hit Rate: 0.63
+Enter rows and column for first matrix: Enter rows and column for second matrix: Enter Cache Size: (16 or 256 words): Enter Set Associativity (1, 2, or 4): 
+Enter elements of matrix 1:
+
+Enter elements of matrix 2:
+
+Output Matrix:
+735  780  825  870  915  960  1005  1050  1095  1140  
+
+880  935  990  1045  1100  1155  1210  1265  1320  1375  
+
+1025  1090  1155  1220  1285  1350  1415  1480  1545  1610  
+
+1170  1245  1320  1395  1470  1545  1620  1695  1770  1845  
+
+1315  1400  1485  1570  1655  1740  1825  1910  1995  2080  
+
+1460  1555  1650  1745  1840  1935  2030  2125  2220  2315  
+
+1605  1710  1815  1920  2025  2130  2235  2340  2445  2550  
+
+1750  1865  1980  2095  2210  2325  2440  2555  2670  2785  
+
+1895  2020  2145  2270  2395  2520  2645  2770  2895  3020  
+
+2040  2175  2310  2445  2580  2715  2850  2985  3120  3255  
+
+Matrix Multiplication of 10x10
+Cache Size: 256	Associativity: 4
+Total Reads: 3000	Total Writes: 1000	 Ratio: 3
+Hits: 2088	Misses: 1912	Hit Rate: 0.52

@@ -1,0 +1,136 @@
+/*----------------------------------------------------------------------*
+*	Example mips_asm program loader. This loads the mips_asm binary	*
+*	named "testcase1.mb" into an array in memory. It reads		*
+*	the 64-byte header, then loads the code into the mem array.	*
+*									*
+*	DLR 4/18/16							*
+*----------------------------------------------------------------------*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "mips_asm_header.h"
+#define R 0
+#define I 1
+#define J 2
+#define NOT_VALID 3
+
+typedef unsigned int MIPS, *MIPS_PTR;
+
+MB_HDR mb_hdr;		/* Header area */
+MIPS mem[1024];		/* Room for 4K bytes */
+Jump_Instruction jump;
+R_Instruction r_instr;
+I_Instruction i_instr;
+
+int check_op(unsigned int opcode)
+{
+   if (!opcode)
+      return R;
+   else if (opcode == 0x02 || opcode == 0x03)
+      return J;
+   else if (opcode == 0x01 || (opcode > 0x03 && opcode < 0x3F))
+      return I;
+   else
+      return NOT_VALID;
+}
+
+void print_r(unsigned int opcode, int address, unsigned int instr)
+{
+   printf("blah\n");
+}
+
+void print_j(unsigned int opcode, int address, unsigned int instr)
+{
+   jump.opcode = opcode;
+   jump.index = instr & 0x3FFFFFF;
+   printf("Instruction at %08X : %08x\n", address, instr);
+   if (opcode == 0x02)
+      printf("\tJ Type Instruction (Jump) w/ Opcode : %02X\n", opcode);
+   else
+      printf("\tJ Type Instruction (Jump and Link) w/ Opcode : %02X\n", opcode);
+   printf("\tEffective Address (PC) : %08X\n", jump.index * 4);
+   
+}
+
+void print_i(unsigned int opcode, int address, unsigned int instr)
+{
+   i_instr.opcode = opcode;
+   i_instr.rs = (instr >>20) & 0x1F;
+   i_instr.rt = (instr >>15) & 0x1F;
+   i_instr.immed = instr & 0xFFFF;
+   printf("this is rs : %08X\n", i_instr.rs);
+   printf("this is rt : %02X\n", i_instr.rt); 
+}
+void add_instruction(unsigned int opcode, int address, unsigned int instruction)
+{
+   int type = check_op(opcode);
+   if (type == R)
+   {
+      print_r(opcode, address, instruction);
+   }
+   else if(type == I)
+   {
+      print_i(opcode, address, instruction);
+   }
+   else if (type == J)
+   {
+      print_j(opcode, address, instruction);
+   }
+   else 
+   {
+      printf("Invalid Instruction @ %08X : %08X\n", address, instruction);
+   }
+}
+int main()
+{
+   FILE *fd;
+   int n;
+   int memp;
+   int i;
+   char filename[] = "testcase1.mb";	/* This is the filename to be loaded */
+   unsigned int opcode;
+   int num = 1;
+   /* format the MIPS Binary header */
+
+   fd = fopen(filename, "rb");
+   if (fd == NULL) { printf("\nCouldn't load test case - quitting.\n"); exit(99); }
+
+   memp = 0;		/* This is the memory pointer, a byte offset */
+
+   /* read the header and verify it. */
+   fread((void *) &mb_hdr, sizeof(mb_hdr), 1, fd);
+   if (! strcmp(mb_hdr.signature, "~MB")==0)
+   { printf("\nThis isn't really a mips_asm binary file - quitting.\n"); exit(98); }
+
+   printf("\n%s Loaded ok, program size=%d bytes.\n\n", filename, mb_hdr.size);
+
+   /* read the binary code a word at a time */
+
+   do {
+      n = fread((void *) &mem[memp/4], 4, 1, fd); /* note div/4 to make word index */
+      if (n) 
+      memp += 4;	/* Increment byte pointer by size of instr */
+      else
+      break;       
+   } while (memp < sizeof(mem)) ;
+
+   fclose(fd);
+
+
+   /* ok, now dump out the instructions loaded: */
+
+   for (i = 0; i<memp; i+=4)	/* i contains byte offset addresses */
+   {
+      opcode = (mem[i/4] >> 26) & 0x3F;
+      printf("%d. ", num++);
+      add_instruction(opcode, i, mem[i/4]);
+      printf("\n");
+      
+   }
+
+
+   exit(0);
+}

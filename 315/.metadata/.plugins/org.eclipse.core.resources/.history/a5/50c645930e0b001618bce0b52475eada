@@ -1,0 +1,14 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Simulator {
+
+	public static void main(String[] args)
+	{
+		String filename = "testcase1.mb"; //this is file name to be loaded
+		File mbFile = new File(filename);
+		
+	}
+
+}

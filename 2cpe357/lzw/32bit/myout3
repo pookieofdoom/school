@@ -1,0 +1,164 @@
+
+LZW Project
+
+Section 9. Result has been added
+0. Due Date, Late Policy, and Weights
+
+    Bronze Due Date: 11:00pm Thursday 11/5/2015
+    Silver Due Date: 11:00pm Monday 11/9/2015
+    Late Policy: 3% per day (or partial day) late.
+    Last Date Accepted: 5:00pm Monday 12/6/2015
+    Project Weight: 10% of the Course
+    Silver Weight: 100% of the Project Weight
+    Bronze Weight: 70% of the Project Weight
+    No Basic or Gold levels assigned.
+
+Remember, per the Syllabus, you must complete this project to be eligible for a grade higher that F in the class even if it is for little or no credit. (Students have actually earned a B in the class even when completing this project so late that they earned a score near zero.)
+1. Overview
+
+This assignment asks you to build an LZW decompressor using the CodeSet and BitUnpacker modules you've already developed in prior IHS Labs.
+Things You Are Expected to Know:
+
+    The LZW algorithm from website references and from the in-class lectures and exercises.
+
+    The particular case study of its implementation in the project, the alphabet we'll be using, including the EOD symbol, and the odd fact that the initial one-symbol codes in the dictionary exactly match the symbols they represent, but are still codes, not symbols.
+
+    The idea of a callback function, from earlier labs.
+    The CodeSet and BitUnpacker modules from earlier labs.
+
+Provided Files:
+
+You are provided with the following files that you must use and, with the exception of MyLib.h, you may not modify:
+
+    BitUnpacker.h
+    CodeSet.h
+    LZWExp.h
+    SmartAlloc.h
+    SmartAlloc.c
+
+You are also provided with the following 32-bit and 64-bit object files. These are provided so that you can cross-compile/link your code with the reference solution and verify that you have followed the specifications correctly. They may also help you to isolate bugs in your code.
+
+    32 Bit Object files
+        BitUnpacker32.o
+        CodeSetBronze32.o
+        CodeSetSilver32.o
+        LZWExp32.o
+        TestExp32.o
+    64 Bit Object files
+        BitUnpacker64.o
+        CodeSetBronze64.o
+        CodeSetSilver64.o
+        LZWExp64.o
+        TestExp64.o
+
+You will find these files on the CSL servers. Here's how to get copies of the 32 bit object files:
+
+cp ~grade-cstaley/357/LZWExp/32Bit/*.o .
+
+And here's how to get copies of the 64 bit object files:
+
+cp ~grade-cstaley/357/LZWExp/64Bit/*.o .
+
+The permissions on the .o files is set to read-only to prevent you from accidentally overwriting them. If you ever need to recopy then you must either use the cp commands -f flag (force) or remove your copies before recopying.
+
+You will also find the following executables on the CSL servers:
+
+    LZWCmp (for you to create test files to uncompress)
+    LZWExpBronze (correct solution for you to compare yours to)
+    LZWExpSilver (correct solution for you to compare yours to)
+    LZWExpBronzeTell ("tells" details about the process to help you debug)
+    LZWExpSilverTell ("tells" details about the process to help you debug)
+
+There are both 32 and 64-bit versions of these executables for you to use. They are found in the following directories - be sure to use the correct version for the server you are running it on! Here's the path to the 32-bit versions:
+
+ ~grade-cstaley/357/LZWExp/32Bit/LZW...
+
+And here's the path to the 64-bit versions:
+
+ ~grade-cstaley/357/LZWExp/64Bit/LZW...
+
+Usage for the various LZWExp... executables is:
+
+LZWExp < inputFile > outputfile (uses 4096 as the recycle code)
+
+OR
+
+LZWExp -R <recycleCode> < inputFile > outputFile (where <recycleCode> is the recycle 
+code value to use, defaulted to 4096)
+
+Usage for LZWCmp is:
+
+LZWCmp filename  (uses 4096 as the recycle code)
+
+OR
+
+LZWCmp -R <recycleCode> filename (where <recycleCode> is the recycle 
+code value you want to use, default 4096) 
+
+The output will be a file called filename.Z that can be used to test your LZWExp compiled with the identical RECYCLE_CODE value.
+
+Important
+
+You must use the same recycle code when you expand a file that you used to compress it. We will test your solution (Bronze and Silver) with different recycle code values so be sure to test your solution with different values too. The recycle code must, at a minimum, be large enough to accomodate the alphabet and EOD.
+
+Finally, you can either link to or copy the public tests. If you link you will not need to get new copies of the tests if we need to update them but they may change without you knowing. If you get a copy then you'll have to update your copies if we need to update them. To link to the public tests do the following:
+
+cp -r ~grade-cstaley/357/LZWExp/tests .
+
+Or, to get a copy do the following:
+
+cp -rL ~grade-cstaley/357/LZWExp/tests .
+
+Note: If you link you will see the private test files but won't be able to access them and if you copy you will get permission errors for the private tests during the copy - this is normal and expected.
+2. General Requirements
+
+For this assignment, write two files TestExp.c and LZWExp.c. TestExp.c contains a main program, and a DataSink callback function, to test the LZWExp.c file. LZWExp.c gives implementations of the four LZW functions defined in the LZWExp.h file. You may also write static functions to support those four LZW functions.
+Important Notes:
+
+    Your source code must compile and link with the provided object files (in appropriate combinations) and must work correctly with them.
+
+    Your source code must compile using the -O3, -Wall and -Werror gcc flags.
+
+    The Bronze and Silver levels both have speed and memory requirements that you must meet in order for Bender to accept your submission. See the discussion about SmartAlloc use below for the memory requirements and be sure your running time, for your TestExp, is no more than 50% higher than the reference copy, especially on very large files.
+
+        The reference TestExp was compiled with the -O3 gcc flag. This results in optimized (faster) code. You should use this compiler flag when testing your solution's performance.
+        The Bronze version:
+            Is not required to do recycling.
+            May use the Bronze, Silver, or Gold version of BitUnpacker and CodeSet.
+        The Silver version:
+            Must do recycling
+            Must use the Silver or Gold version of BitUnpacker and CodeSet.
+
+3. TestExp
+
+Make your TestExp.c and LZWExp.c files work just like the sample TestExp executable provided. TestExp reads, as standard input (e.g via scanf) the hexadecimal output from the supplied TestCmp (see below), several samples of which are also provided. It sets up an LZWExp struct, initializes it, and then reads 4-byte 8-digit hex integers from the standard input, feeding them to the LZWExpDecode method. When the input data is hits EOF, TestExp wraps up the expansion process by calling LZWExpStop.
+DataSink
+
+TextExp provides a callback function, compatible with the DataSink pointer type in LZWExp.h. The general purpose of a DataSink function is to do whatever is desired with the uncompressed data, whether that's to write it to a file, transmit it over the internet, or simply print it out. Our callback function just prints each sequence of symbols to the standard output. The result should be a file identical input to TestCmp's original input. SinkState may be NULL if not needed in our case.
+LZWExpTell
+
+You may also find the LZWExpTell executable useful. It additionally announces each code, and the number of bits for that code, as the code is unpacked.
+Error Checking
+
+TestExp must do error checking. Negative-value error-return codes are defined in LZWExp.h. If TestExp encounters any of these, it prints the corresponding error message and then stops. TestExp never prints more than one error.
+
+    Missing EOD if end of compressed data is reached at any point before a final EOD code is given
+    Bad code if an invalid code is encountered at any point, including nonzero bits after an EOD or extra int-blocks.
+
+A code is a BAD_CODE if it either could not have been sent (e.g. is too high of a code value), if it detects nonzero bits following the detection of an EOD code, or if extra calls of LZEExpDecode occur when EOD has already been seen.
+Interaction only via LZWExpxxx methods
+
+Do not interact directly with LZWExp fields (e.g. "exp.EODSeen") in TestExp. Maintain proper information hiding.
+4. LZWExp
+
+The LZWExp struct defined in LZWExp.h is the core data structure of the decompressor. All state relevant to an ongoing decompression is held here, including the dictionary of codes thus far created, a pointer to the callback function, the configuration for said function, the number of bits per code at present, and various other state information documented in the header file. You set up one of these via LZWExpInit to start a decompression, run the decompression by repeated calls of LZWDecode, which calls will modify the LZWExp's content to reflect the progress of the decompression, and finalize the decompression by a call of LZWExpStop, followed by a call of LZWExpDestruct to free any storage allocated during the decompression. Note that each method is passed an LZWExp by pointer, so it can modify the LZWExp.
+Dictionary Recycle
+
+The recycle code is found in the LZWExp struct defined in LZWExp.h. It must be set to DEFAULT_RECYCLE_CODE if none is specfied on the command line with the -R flag. Both the Bronze and Silver versions are required to support the -R flag and will be tested with different values. A Bronze solution is not required to recycle the dictionary but must support any files that do not require recycling with the specified recycle code. However, a Silver solution is required to actually recycle the dictionary as described below.
+
+Be aware that you must compress and expand files with the same RECYCLE_CODE. The provided LZWCmp and LZWExps allow you to specify the recycle code as a command line argument or default to DEFAULT_RECYCLE_CODE (defined in LZWExp.h). Your solution must do the same.
+
+When the LZW compressor reaches the point where it would add a new code equal to the recycleCode in the LZWExp struct to the dictionary, it instead clears the entire code dictionary, returning the dictionary to its initial state with just the codes for the alphabet, plus the EOD code. Then, on the next code, it resumes building the dictionary from this new starting point. So, if the recycle code where 4096, then:
+
+    Dictionary has 4096 entries in it. When a new code is decompressed that would add code 4096 to the dictionary we, instead, add no code and reset the dictionary.
+    When the nexout7TheBad code

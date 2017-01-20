@@ -1,0 +1,28 @@
+push 3: -44.11 -53.17 -97.99 
+isEmpty? FALSE
+isStack? TRUE
+checkSpace: Expected memory allocated
+push 2: 23.88 12.21 
+isEmpty? FALSE
+isStack? TRUE
+checkSpace: Expected memory allocated
+pop  1: 12.21 
+isEmpty? FALSE
+isStack? TRUE
+checkSpace: Expected memory allocated
+pop  1: 23.88 
+isEmpty? FALSE
+isStack? TRUE
+checkSpace: Expected memory allocated
+pop  1: -97.99 
+isEmpty? FALSE
+isStack? TRUE
+checkSpace: Expected memory allocated
+pop  1: -53.17 
+isEmpty? FALSE
+isStack? TRUE
+checkSpace: Expected memory allocated
+pop  1: -44.11 
+isEmpty? TRUE
+isStack? TRUE
+checkSpace: Expected memory allocated

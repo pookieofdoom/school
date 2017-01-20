@@ -1,0 +1,22 @@
+void swapPair(struct Pair* pair1, struct Pair* pair2)
+{
+   struct Pair* temp;   
+   if ( pair1->val1 >  pair2->val1 || (pair1->val1 == pair2->val1 && pair1->val2 > pair2->val2 ))
+   { 
+      temp = pair1;
+      *pair1 = *pair2;
+      *pair2 = temp;
+   }
+}
+
+void sortThree(struct Pair* pair1,struct Pair* pair2, struct Pair* pair3)
+{
+
+   swapPair(pair1,pair2);
+   swapPair(pair1,pair3);
+   swapPair(pair2,pair3);
+}
+
+sortThree(&pair1, &pair2, &pair3);
+
+sortThree(&pair3, &pair2, &pair1);

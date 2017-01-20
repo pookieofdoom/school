@@ -1,0 +1,111 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+typedef struct myFloat {
+
+   unsigned int sign, exponent, fraction;
+} myFloat;
+
+
+
+void print_binary(float f)
+{
+   unsigned int iNumber;
+   iNumber = (unsigned int) * (unsigned int *) &f; 
+   int i;
+   printf("IEEE 754 Binary Representation of %lf is: ", f);
+   for (i=0; i<=31; i++)
+   {
+      if ((iNumber >> (31-i)) & 1)
+         printf("1");
+      else
+         printf("0");
+   }
+   printf("\n");
+}
+
+myFloat unpack_ieee_754(float f)
+{
+   myFloat retz;
+   float x = 0;
+   int i;
+   unsigned int iNumber;
+   iNumber = (unsigned int) * (unsigned int *) &f;
+
+   retz.sign = iNumber >> 31;
+   retz.exponent = ((iNumber >> 23) & 0xff) - 126;
+   
+   retz.fraction = (iNumber & 0x7fffff) << 7 | 0x40000000;
+  
+   printf("iNum: %x\nthis is fraction %x\n", iNumber, retz.fraction);
+   for (i=1; i<=31; i++)
+   {
+      x = x + ((retz.fraction >> (23-i)) & 1) * pow(2, -i);
+        
+   }
+   
+   printf("Sign: %d\nExponent: %d\nFraction: %f\n", retz.sign, retz.exponent, x); 
+  return retz;
+}
+
+float pack_ieee_754(int sign, int expo, int frac)
+{
+   float f;
+   float a;
+   int i;
+   float x = 0;
+   unsigned int iNumber = 0;
+   iNumber = (unsigned int) * (unsigned int *) &f;
+   iNumber |= ((sign &0x1) << 31);
+   expo += 126;
+   iNumber |= ((expo & 0xff) << 23);
+   frac = (frac & 0x3FFFFF80) >> 7;
+   iNumber |= frac;
+   //printf("this is frac %X\n", frac);
+   for (i=1; i<=23; i++)
+   {
+      x = x + ((iNumber >> (23-i)) & 1) * pow(2, -i);
+        
+   }
+   printf("this is fraction in decimal %f\n", x);
+   printf("packed ieee754 is: %X (%f)\n", iNumber, pow(-1, sign) *(1+x) * pow(2,expo -127));
+   //unpack_ieee_754(iNumber);
+   return f;  
+}
+
+float single_float_add(float a, float b) {
+   
+   myFloat f_a, f_b;
+   f_a = unpack_ieee_754(a);
+   f_b = unpack_ieee_754(b);
+   int scale_shift = f_a.exponent - f_b.exponent;
+   if (scale_shift < 0) {
+      f_a.exponent -= scale_shift;
+      f_a.fraction >>= -scale_shift;
+   }
+   else if (scale_shift > 0) {
+      f_b.exponent += scale_shift;
+      f_b.fraction >>= scale_shift;
+   }
+   printf("scale for a is %d and scale for b is %d\n", f_a.exponent, f_b.exponent);
+   
+}
+
+
+int main()
+{
+   /*
+   myFloat numA;
+   float numberA, numberB;
+   printf("Enter your float: ");
+   scanf(" %f", &numA.value);
+   printf("\n");
+   numA = unpack_ieee_754(numA.value);
+   pack_ieee_754(1, 3, 0xC0000000);
+   print_binary(numberA);
+   */
+   float x = single_float_add(28, .5);
+   return 0; 
+
+}

@@ -1,0 +1,4 @@
+Chris Casil
+
+This LWP library shares the same address space and other resources which differ from a real thread management library. This is the main reason LWPs coin the term light weight. The LWP library can be improved if it was changed from non-preemptive to preemptive; preemptive processes are generally faster if optimized. Another improvement would be a change in schedulers; round robin scheduling produces average response time compared to other schedulers and involves extensive overhead.
+

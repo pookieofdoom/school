@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include "puzzleLib.h"
+#include <stdlib.h>
+
+#define BOUND 99 
+
+int main()
+{
+	system("clear");
+	int puzzle[PUZZLE_SIZE][PUZZLE_SIZE];
+	int startNum, move, count =0, var;
+   char answer;
+	srandom(time(NULL));
+	printf("Welcome to the puzzle game!\n");
+	printf("\nWould you like a (r)egular or (s)nake sliding tile puzzle? ");
+	scanf(" %c", &answer);
+	while (answer != 'r' && answer!= 's')
+	{
+		printf("Invalid choice. Please try again. ");
+		scanf(" %c", &answer);
+	}
+	printf("\nWhat number would you like the puzzle to start from? ");
+	scanf("%d", &startNum);
+	while (startNum <0 && (startNum > BOUND - PUZZLE_SIZE*PUZZLE_SIZE) + 2)
+	{
+		printf("Invalid start number. Please try again. ");
+		scanf("%d", &startNum);
+	}
+	if(answer == 'r')
+	{
+		var = 0;
+		SetPuzzle(puzzle,startNum, var);
+		
+	}
+	else if (answer == 's')
+	{
+		var = 1;
+		SetPuzzle(puzzle, startNum, var);
+		
+	}
+	
+	Shuffle(puzzle, 1);
+	IsValidPuzzle(puzzle, startNum);
+	
+	PrintPuzzle(puzzle);
+	printf("[%d] ", count);
+	move = GetPlayerMove();
+	
+	while(!IsSolved(puzzle,startNum, var))
+	{
+	
+		if (move == -1)
+		{
+			break;
+		}
+		else if (move <=0 && move >(startNum > BOUND - PUZZLE_SIZE*PUZZLE_SIZE) + 2 )
+		{
+			printf("Invalid move!\n");
+		}
+		else
+		{
+			if (Move(puzzle,move))
+			{
+				system("clear");
+				count ++;
+				PrintPuzzle(puzzle);
+				printf("[%d] ", count);
+			
+			}
+			else
+			{
+				printf("Invalid move!\n");
+			}
+		}
+		move = GetPlayerMove();
+	}
+	if (IsSolved(puzzle,startNum, var))
+	{
+		printf("\nCongratulations! You solved the puzzle in %d moves. Thanks for playing!\n", count);
+	}
+	else
+	{
+		printf("\nThanks for playing!\n\n");
+	}
+	return 0;
+}
+	

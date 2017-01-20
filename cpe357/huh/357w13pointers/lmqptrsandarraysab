@@ -1,0 +1,11 @@
+for ( ; next < valsEnd; next++)
+{
+   toInsert = *next;
+   for(loc = next; ( loc > vals && toInsert <= *(loc-1);)
+   { 
+      *loc = *(loc-- - 1);
+   }
+    *loc = toInsert;
+}
+
+

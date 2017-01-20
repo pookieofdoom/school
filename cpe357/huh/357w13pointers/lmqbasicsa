@@ -1,0 +1,3 @@
+iPtr3 = &i2;
+iPtr2 = &i1;
+iPtr1 = &i2;

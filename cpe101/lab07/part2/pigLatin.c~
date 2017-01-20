@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+/* You may NOT call any other string functions.
+ * Do NOT include string.h.
+ * Do NOT alter main in any way. */
+
+void pigLatin(char w[]);
+
+int main ()
+{
+   char word[10];
+
+   printf("Word: ");
+   scanf("%s", word);
+
+   pigLatin(word);
+
+   printf("Pig Latin Word: %s\n", word);
+
+  return 0;
+}
+
+/* Change word to pig latin.
+ * Input word will contain at least one character.
+ * Don't worry about words that start with a vowel.
+ */
+void pigLatin(char w[])
+{
+   int i;
+	char x[7];
+
+	for (i=0;i<7;i++)
+	{
+		x[i] = w[i+1];
+	}

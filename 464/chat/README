@@ -1,0 +1,6 @@
+Name: Anthony Dinh   Lab Section : 9 am
+
+Notes:
+1. Somtimes the %L cmd needs to press enter multiple times.
+2. Funcky handle prints if client is on the same unix server as the server.
+3. Program will break if %M or %B is used and no text is used after. Needs a least 1 space for it to work after the cmd.

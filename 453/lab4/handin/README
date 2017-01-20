@@ -1,0 +1,54 @@
+Anthony Dinh and Jeremy Kerfs
+
+# Implementation
+Our implementation was separated into distinct libraries to make development and debugging easier.  All of the additional features are written in a
+separate file with the prefix feat.  Our tinyFsDemo has more than 100 individual test cases that validate the operation of our file system.  We chose
+to prevent all file system library functions from printing to standard out because that makes it difficult to create automated tests and build
+applications that interact with the file system.  Rather, all data is returned through pointers.  We took care to minimize the number of assumptions
+that we made.  The file system works properly on both 32 bit and 64 bit architectures.
+
+# Additional Features
+## Timestamps
+
+We added access, modified, and created timestamps using the linux time function from time.h to each inode.  These three timestamps were stored in a
+struct inside the inodes.  We provided the tfs_readFileInfo() function to allow users to read the timestamps.  The timestamps are returned
+by setting the fileinfo pointer argument to the fileinfo of the file with the file descriptor.  This method of setting the pointer to the
+structure is beneficial because it reduces the overhead of copying a large structure, and it is more easily integrated into other projects
+because the results are not just printed to standard out.
+
+We are confident that our timestamps function appropriately because we implemented a test suite in our tinyFsDemo file.  We verify that
+the timestamps are all equivalent when the file is first created.  Then we verify that when the file is written, the access and modified
+timestamps are updated, while the created timestamp remains the same as before.  Finally, we verify that when the file is read, the
+access timestamp is updated, but the modified and created timestamps are kept at their previous states.  It is important to note
+that our timestamps are only accurate to the second; slight modifications would be needed to achieve a finer granularity.
+
+## Read-only and writeByte support
+To implement read-only support, we added an entry to the inode that specifies whether the file is read-only.  When a
+file is originally created, this field is set to 0.  When tfs_makeRO is called on the file, then we set the readonly field to one.  The writeByte
+funciton was implemented similiarly to the readByte.  The byte at the current file pointer address is updated when the user invokes the
+writeByte function.  In our implementation, we chose to prevent users from writing past the end of the file using writeByte because we wanted
+to ensure that writeByte was a perfect analogue to readByte.
+
+We are confident that the read-only and write-byte features work because we implemented a comprehensive test suite in our tinyFsDemo file.
+Our preliminary tests demonstrate that when a file is originally created, the user can write to it.  Then when the file is made read-only,
+writeFile, deleteFile, and writeByte all fail with the error that the file is READ_ONLY.  Then when the file is modified to be read-write,
+then the function writeFile, deleteFile, and writeByte all succeed.  Regardless of the read-only state of the file, the readByte always succeeds.
+Then the writeByte was tested in various situations at different offsets into the file to verify that the byte was actually replaced with the
+desired byte.
+
+## Directory listing and renaming
+Renaming was implemented by providing a function called tfs_rename() that takes a file descriptor and a new name.  The function looks up the
+the file descriptor and updates the name of the file in both the file's inode and in the directory inode.  The call will fail if the
+new name is too long or is equal to the root directory name "\".  Currently, we allow users to name a file the same as another file, although
+this will lead to undefined behavior.  The tfs_readDir is a function that populates a character vector with the names of all directories and files.
+The first entry of the returned list is the root folder "\" followed by numFiles of 9 character filename strings.
+
+The directory listing and renaming were rigorously tested in tinyFsDemo.  We wrote tests that open a file, write to the file, then change it's name.
+Subsequent calls to open the file by its original name create a new file rather than reading from the file with the changed name.  Additionally, if
+the file is opened with the new name, then the user can read the data.  We also validated our error checking to make sure that the rename function
+properly screens names that are too long.  The readdir was verified by opening several files and checking that readdir returned the expected list.  We
+also deleted some files and opened others to demonstrate that readdir was able to update its listing.
+
+# Limitations
+All addresses are stored in an unsigned char, so our file system can only support 256 blocks.
+Additionally, each folder was constrained to 20 files/folder to fit all pairs in a single inode, but this can easily be changed.

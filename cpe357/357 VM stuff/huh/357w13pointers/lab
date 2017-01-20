@@ -1,0 +1,158 @@
+scanf("%d%d", &set, &ndx);
+         printf("Added extended code %d\n", extendCode(cs[set], ndx));
+         
+scanf("%d%d%d", &set, &ndx, &val);
+         setSuffix(cs[set], ndx, val);
+         
+         
+         
+scanf("%d%d", &set, &ndx);
+         printf("Code %d in set %d has value:",ndx, set);
+         code = getCode(cs[set], ndx);
+         int i;
+
+         for ( i =0 ; i < code.size; i++ )
+         {
+            printf(" %d", code.data[i]);
+         }
+         printf("\n");
+
+
+
+
+
+
+#define BLOCK_SIZE 16
+
+typedef struct MemBlock {
+   char data[BLOCK_SIZE];
+   int bytesUsed;
+   struct MemBlock *next;
+} MemBlock;
+
+
+typedef struct CodeSet {
+   Code *head;
+   MemBlock *memBlock;
+   int index;
+   int size;
+} CodeSet;
+
+/* Allocate, initialize, and return a CodeSet object, via void *
+ * The CodeSet will have room for |numCodes| codes, though it will
+ * initially be empty. */ 
+void *createCodeSet(int numCodes)
+{
+   CodeSet *toReturn = malloc(sizeof(CodeSet));
+   toReturn->head = malloc(sizeof(Code) * numCodes);
+   toReturn->index = 0;
+   toReturn->memBlock = NULL;
+   toReturn->size = numCodes;
+
+   return toReturn;
+}
+/* Add a new 1-byte code to |codeSet|, returning its index, with
+ * the first added code having index 0.  The new code's byte is
+ * equal to |val|.  Assume (and assert if needed) that there
+ * is room in the |codeSet| for a new code. */
+int newCode(void *codeSet, char val)
+{
+   int toReturn = ((CodeSet*)codeSet)->index;
+   if ( ((CodeSet*)codeSet)->index < ((CodeSet*)codeSet)->size )
+   {
+      if ( ((CodeSet*)codeSet)->memBlock == NULL )
+      {
+         ((CodeSet*)codeSet)->memBlock = malloc(sizeof(MemBlock));
+         ((CodeSet*)codeSet)->memBlock->bytesUsed = 0;
+         ((CodeSet*)codeSet)->memBlock->next = NULL;
+      }
+      else if (((CodeSet*)codeSet)->memBlock->bytesUsed == BLOCK_SIZE )
+      {
+         MemBlock *new = malloc(sizeof(MemBlock));
+         new->bytesUsed = 0;
+         new->next = ((CodeSet*)codeSet)->memBlock;
+         ((CodeSet*)codeSet)->memBlock = new;
+      }
+      ((CodeSet*)codeSet)->memBlock->data[((CodeSet*)codeSet)->memBlock->bytesUsed] = val;
+      Code *ptr =  ((CodeSet*)codeSet)->head;        
+      ptr+= ((CodeSet*)codeSet)->index;
+      ptr->data =  &((CodeSet*)codeSet)->memBlock->data[((CodeSet*)codeSet)->memBlock->bytesUsed];
+      ((CodeSet*)codeSet)->index++;
+      ((CodeSet*)codeSet)->memBlock->bytesUsed += sizeof(val);
+      ptr->size = sizeof(val);      
+   } return toReturn;
+}
+
+
+/* Create a new code by copying the existing code at index
+ * |oldCode| and extending it by one zero-valued byte.  
+ * Return the new code's index.  Assume |oldCode| is a valid
+ * index and that there is enough room for a new code. */
+int extendCode(void *codeSet, int oldCode)
+{
+   Code old = getCode(codeSet, oldCode);
+   int i;
+   int toReturn = ((CodeSet*)codeSet)->index;
+   if ( ((CodeSet*)codeSet)->index < ((CodeSet*)codeSet)->size )
+   {
+      if (((CodeSet*)codeSet)->memBlock->bytesUsed + (old.size)+1 >  BLOCK_SIZE )
+      {
+         MemBlock *new = malloc(sizeof(MemBlock));
+         new->bytesUsed = 0;
+         new->next = ((CodeSet*)codeSet)->memBlock;
+         ((CodeSet*)codeSet)->memBlock = new;
+      }
+      for ( i = 0 ; i < old.size; i++)
+      {
+         ((CodeSet*)codeSet)->memBlock->data[((CodeSet*)codeSet)->memBlock->bytesUsed+i]
+             = old.data[i];
+      }
+      Code *ptr =  ((CodeSet*)codeSet)->head;        
+      ptr+= ((CodeSet*)codeSet)->index;
+      ptr->data =  &((CodeSet*)codeSet)->memBlock->data[((CodeSet*)codeSet)->memBlock->bytesUsed];
+      ptr->data[old.size] = 0;
+      ((CodeSet*)codeSet)->index++;
+      ((CodeSet*)codeSet)->memBlock->bytesUsed += old.size + 1;
+      ptr->size = old.size+1; 
+   }
+   return toReturn;
+
+
+}
+
+
+/* Set the final byte of the code at index |code| to |suffix|.  
+ * This is used to override the zero-byte added by extendCode. */
+void setSuffix(void *codeSet, int code, char suffix)
+{
+   Code *old = ((CodeSet*)codeSet)->head+code;
+   int lastChar = old->size-1;
+   old->data[lastChar] = suffix;
+}
+
+/* Return the code at index |code| */
+Code getCode(void *codeSet, int code)
+{
+   Code *toReturn = ((CodeSet*)codeSet)->head+code;
+   return *(toReturn);
+}
+/* Free all dynamic storage associated with |codeSet| */
+void destroyCodeSet(void *codeSet)
+{
+  int i ;
+  while (((CodeSet*)codeSet)->memBlock )
+  {
+      MemBlock *temp = ((CodeSet*)codeSet)->memBlock;
+      ((CodeSet*)codeSet)->memBlock = temp->next;
+      free(temp);
+  }
+  /*for ( i = 0 ; i < ((CodeSet*)codeSet)->size; i++ )
+  {
+      Code *head = ((CodeSet*)codeSet)->head;
+      free(head);
+      ((CodeSet*)codeSet)->head++;
+      
+   }*/
+   free(((CodeSet*)codeSet)->head);
+   free (((CodeSet*)codeSet));
+}  

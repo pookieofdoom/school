@@ -1,0 +1,18 @@
+#include <stdio.h>
+#define DIM 4
+#define VOWEL 6
+
+void makeBoard(char board[][DIM]);
+void printBoard(char board[][DIM]);
+int isValid(char board[][DIM]);
+
+int main()
+{
+}
+
+void makeBoard(char board[][DIM])
+{
+   int row,col;
+   for (row=0; row<DIM; row++)
+   {
+      row

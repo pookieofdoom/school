@@ -1,0 +1,3 @@
+#! /bin/sh
+
+~grade-cstaley/bin/SafeRun -o400000 -t20000 -T20000 -p900 ./test

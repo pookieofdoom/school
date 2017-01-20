@@ -1,0 +1,171 @@
+#! /bin/sh
+
+# Preparation
+
+# tidyUp
+
+# echo "Removing some stuff"
+# rm LinearSim Cell # MyLinearSim MyCell
+
+echo "About to compile ..."
+alias myGcc="gcc -Wall -Werror -O3"
+myGcc Cell.o -o RefCell
+myGcc Cell.c -o MyCell
+myGcc LinearSim.o -o RefLinearSim
+myGcc LinearSim.c -o MyLinearSim
+echo "compiled"
+
+generateRef () {
+  ./LinearSim $@ 1>goldenOut 2>goldenErr
+  sort goldenOut > goldenOutSorted
+  sort goldenErr > goldenErrSorted 
+}
+
+checkMine () {
+   ./LinearSim $@ 1>myOut 2>myErr
+  sort myOut > myOutSorted
+  sort myErr > myErrSorted
+  diff goldenOutSorted myOutSorted
+  diff goldenErrSorted myErrSorted
+}
+
+testCell () {
+  ln -s ./RefCell Cell
+  ln -s ./RefLinearSim LinearSim
+  generateRef $@
+  rm Cell; ln -s ./MyCell Cell
+  checkMine $@
+  rm Cell LinearSim
+}
+
+testAllCombos () {
+  ln -s ./RefCell Cell
+  ln -s ./RefLinearSim LinearSim
+  generateRef $@
+  # Their LinearSim + my Cell
+  rm LinearSim; ln -s ./RefLinearSim LinearSim
+  rm Cell; ln -s ./MyCell Cell
+  checkMine $@
+  # My LinearSim + their Cell
+  rm LinearSim; ln -s ./MyLinearSim LinearSim
+  rm Cell; ln -s ./RefCell Cell
+  checkMine $@
+  # My LinearSim + my Cell
+  rm LinearSim; ln -s ./MyLinearSim LinearSim
+  rm Cell; ln -s ./MyCell Cell
+  checkMine $@
+  rm Cell LinearSim
+}
+
+testCellFailure () {
+   ln -s ~grade-cstaley/357/LinearSim/32Bit/CellReturnFailure Cell 
+   ln -s ./RefLinearSim LinearSim
+   generateRef $@
+   rm LinearSim; ln -s ./MyLinearSim LinearSim
+   checkMine $@
+   rm Cell LinearSim
+}
+
+testCellTooFewSteps () {
+   ln -s ~grade-cstaley/357/LinearSim/32Bit/CellTooFewSteps Cell
+   ln -s ./RefLinearSim LinearSim
+   generateRef $@
+   rm LinearSim; ln -s ./MyLinearSim LinearSim
+   checkMine $@
+   rm Cell LinearSim
+}
+
+testCellTooManySteps() {
+   ln -s ~grade-cstaley/357/LinearSim/32Bit/CellTooManySteps Cell
+   ln -s ./RefLinearSim LinearSim
+   generateRef $@
+   rm LinearSim; ln -s ./MyLinearSim LinearSim
+   checkMine $@
+   rm Cell LinearSim
+}
+
+tidyUp () {
+  rm goldenOut goldenOutSorted \
+     goldenErr goldenErrSorted \
+     myOut myOutSorted \
+     myErr myErrSorted \
+     MyCell RefCell \
+     RefLinearSim MyLinearSim
+}
+
+# Single test
+
+#testAllCombos C1 S0
+#testAllCombos C1 S1 L20
+#testAllCombos C1 S1 R50
+testAllCombos C2 S1  R30
+#testCellFailure C5 S3 L10 R30
+#testCellFailure C1 S3 L5.6 R8.7
+#testCellFailure S3
+
+#testCellTooFewSteps C5 S3 L10 R30
+
+ #testAllCombos C10 S10 L5 R10
+ #testAllCombos C3 S1 L10 R30
+#testAllCombos C50 S125 R-1000 L1000
+#tidyUp
+#echo "Single test run (you can hit ctrl-d now, if you're running safely)"
+#exit
+
+#################################################
+# Basic tests (test0xx):
+## Various numbers of cells between 2 and 50, inclusive.
+## No extra, missing, or bad arguments.
+## All tests should return EXIT_SUCCESS.
+## THIS WILL ONLY TEST MY CELL USING THEIR LINEAR SIM
+
+testCell C7 S11 L43.5 R-76.3421
+# echo "Passed first test :-)"
+testCell R99.9 C6 L21.1 S50
+testCell R7 L3 S1 C2
+testCell R7.11 L3.25 S7 C4 C3 C2 S6 X4 Z1 XYZ TUV R32.1 L11.1
+testCell C5 S3
+testCell C50 S10 L10 R20
+# echo "Passed all of the first set of tests"
+
+#################################################
+# Bronze tests (test1xx):
+## Various numbers of cells between 1 and 50, inclusive.
+## Various combinaitons of extra, and/or missing, and/or bad arguments.
+## Some tests return EXIT_SUCCESS while others return EXIT_FAILURE.
+## FROM NOW FORWARD, TESTING WILL USE ALL COMBOS OF MY/THEIR COMPONENTS
+
+## My LinearSim and their cell
+testAllCombos C5 S3 L10 R30
+testAllCombos C10 S10 L5 R10
+testAllCombos R99.9 C6 L21.1 S50
+testAllCombos C7 S11 L43.5 R-76.3421
+testAllCombos R7 L3 S1 C2
+testAllCombos C7 S10 L34.5 R99.7
+testAllCombos C50 S10 L10 R20
+testAllCombos R7.11 L3.25 S7 C4 C3 C2 S6 X4 Z1 XYZ TUV R32.1 L11.1
+testAllCombos C5 S5
+testAllCombos C9 S3 L10 R30
+#missing arguments failure
+testAllCombos S5
+testAllCombos C7 R5.6 L3.4
+#only 1 cell but trying to assign 2 cells
+testAllCombos C1 S3 L5.6 R8.7
+testAllCombos C1 S0
+testAllCombos C1 S1 L20
+testAllCombos C1 S1 R50
+testAllCombos C2 S0
+testAllCombos C50 S10
+
+testCellFailure C5 S3 L10 R30
+#testCellFailure C5 S3 L10 R30
+testCellTooFewSteps C5 S3 L10 R30
+testCellTooManySteps C10 S10 L5 R10
+#################################################
+# Silver tests (test2xx, test3xx, and test4xx):
+## Various numbers of cells between 1 and 50, inclusive.
+## All with good arguments but the Cell fails in some way.
+## All tests should return EXIT_FAILURE
+
+tidyUp
+echo "All tests run (you can hit ctrl-d now, if you're running safely)"

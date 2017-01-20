@@ -1,0 +1,16 @@
+temp = malloc(sizeof(Node));
+temp->data = data;
+if ( head)
+{
+   node = head;
+   while ( node->next )
+   {
+       node = node->next;
+   }
+   node->next = temp;
+}
+else
+{
+   head = temp;
+}
+return head;

@@ -1,0 +1,41 @@
+#! /bin/bash
+ 
+chmod 700 ./schedSim.py
+ 
+echo      ::FIFO TESTS::
+for i in {1..8}
+do
+    echo --------------------------------
+    echo ./schedSim.py jobs$i.txt -p FIFO
+    ./schedSim.py jobs$i.txt -p FIFO
+    echo --------------------------------
+done
+ 
+echo      ::ROUND ROBIN TESTS w/ Q = 1::
+for i in {1..8}
+do
+    echo --------------------------------
+    echo ./schedSim.py jobs$i.txt -p RR
+    ./schedSim.py jobs$i.txt -p RR
+    echo --------------------------------
+done
+ 
+ 
+echo      ::ROUND ROBIN TESTS w/ NON-DEFAULT QUANTA::
+for i in {1..8}
+do
+    echo --------------------------------
+    echo ./schedSim.py jobs$i.txt -p RR -q $i
+    ./schedSim.py jobs$i.txt -p RR -q $i
+    echo --------------------------------
+done
+ 
+ 
+echo      ::SHORTEST REMAINING JOB FIRST::
+for i in {1..8}
+do
+    echo --------------------------------
+    echo ./schedSim.py jobs$i.txt -p SRJN
+    ./schedSim.py jobs$i.txt -p SRJN
+    echo --------------------------------
+done

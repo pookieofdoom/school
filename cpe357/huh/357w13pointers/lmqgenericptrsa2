@@ -1,0 +1,8 @@
+fillArray(void *iArr, int *IDIM, void *iVal ,int size)
+{
+   while ( iArr < IDIM)
+   {
+      memmove(iArr, iVal, size);
+      iArr++;
+   }
+}

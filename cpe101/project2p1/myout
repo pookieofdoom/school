@@ -1,0 +1,153 @@
+*** Testing showWelcome... ***
+
+
+Welcome aboard the Lunar Module Flight Simulator
+
+   To begin you must specify the LM's initial altitude
+   and fuel level.  To simulate the actual LM use
+   values of 1300 meters and 500 liters, respectively.
+
+   Good luck and may the force be with you!
+
+
+*** Testing getFuel... ***
+
+TEST 1: When prompted, input a number greater than 0.  You should not see an error.
+
+Enter the initial amount of fuel on board the LM (in liters): 
+Fuel returned was: 5
+
+TEST 2: When prompted, input 0.  You should see and error and then be prompted again.
+Then enter a negative number.  You should see the same error message and be 
+prompted again.  Finally, enter a number greater than 0.
+
+Enter the initial amount of fuel on board the LM (in liters): ERROR: Amount of fuel must be positive, please try again
+Enter the initial amount of fuel on board the LM (in liters): ERROR: Amount of fuel must be positive, please try again
+Enter the initial amount of fuel on board the LM (in liters): 
+Fuel returned was: 5
+
+*** Testing getAltitude... ***
+
+TEST 1: When prompted, input a number greater than 0 and less than 10,000. You should not see an error.
+
+Enter the initial altitude of the LM (in meters): 
+Altitude returned was: 100
+
+TEST 2: When prompted, input 0. You should see and error and then be prompted again.
+Then enter a negative number. You should see the same error message and be 
+prompted again. Then, enter a number greater than 10,000. You should see the same error.
+Finally, enter a number greater than 0 and less than 10,000.
+
+Enter the initial altitude of the LM (in meters): ERROR: Altitude must be between 1 and 9999, inclusive, please try again
+Enter the initial altitude of the LM (in meters): ERROR: Altitude must be between 1 and 9999, inclusive, please try again
+Enter the initial altitude of the LM (in meters): ERROR: Altitude must be between 1 and 9999, inclusive, please try again
+Enter the initial altitude of the LM (in meters): 
+Altitude returned was: 5
+
+*** Testing displayLMState... ***
+
+Elapsed Time:    0 s
+        Fuel:    4 l
+        Rate:    0 l/s
+    Altitude:    5.00 m
+    Velocity:    0.00 m/s
+
+
+*** Testing getFuelRate... ***
+
+Test 1: Input the number 3 and you should not see an error and the value returned should be 3.
+
+Enter fuel rate (0-9, 0=freefall, 5=constant velocity, 9=max thrust): 
+Fuel Rate returned was: 3
+Test 2: Input the number 3 and you should not see an error and the value returned should be 2.
+
+Enter fuel rate (0-9, 0=freefall, 5=constant velocity, 9=max thrust): 
+Fuel Rate returned was: 2
+Test 3: Input a value less than zero and you should see the error and get prompted again.
+Then enter a number greater than 9 and see another error and be promopted yet again.
+Enter any number between 0 and 9
+
+Enter fuel rate (0-9, 0=freefall, 5=constant velocity, 9=max thrust): ERROR: Fuel rate must be between 0 and 9, inclusive
+
+Enter fuel rate (0-9, 0=freefall, 5=constant velocity, 9=max thrust): ERROR: Fuel rate must be between 0 and 9, inclusive
+
+Enter fuel rate (0-9, 0=freefall, 5=constant velocity, 9=max thrust): 
+fuel Rate returned was: 5
+
+*** Testing updateAcceleration... ***
+
+Test 1: Inputing gravity constant and 5
+      Expect: 0.000000
+      Got: 0.000000
+      Pass
+Test 2: Inputing gravity constant and 9
+      Expect: 1.296000
+      Got: 1.296000
+      Pass
+Test 2: Inputing gravity constant and 0
+      Expect: -1.620000
+      Got: -1.620000
+      Pass
+
+*** Testing updateAltitude... ***
+
+Test 1: Inputing 100.0, -1.5, 5.0
+      Expect: 101.000000
+      Got: 101.000000
+      Pass
+Test 2: Inputing -1, -.4, -5
+      Expect: 0.000000
+      Got: 0.000000
+      Pass
+Test 3: Inputing 0, 99.99, 0
+      Expect: 99.990000
+      Got: 99.990000
+      Pass
+Test 4: Inputing 20, -20.1, 0
+      Expect: 0.000000
+      Got: 0.000000
+      Pass
+
+*** Testing updateVelocity... ***
+
+TEST 1: Inputing -1 and -0.5
+      Expect: -1.500000
+      Got: -1.500000
+      Pass
+TEST 2: Inputing 0.0 and 0.0
+      Expect: 0.000000
+      Got: 0.000000
+      Pass
+TEST 3: Inputing -100.23 and 1.1
+      Expect: -99.130000
+      Got: -99.130000
+      Pass
+
+*** Testing updateFuel... ***
+
+Test 1: Inputing 100 and 0
+      Expect: 100
+      Got: 100
+      Pass
+Test 2: Inputing 5 and 6
+      Expect: -1
+      Got: -1
+      Pass
+Test 3: Inputing 9 and 9
+      Expect: 0
+      Got: 0
+      Pass
+
+*** Testing displayLMLandingStatus... ***
+
+Testing first message
+Status at landing - Ouch - that hurt!
+Status at landing - The eagle has landed!
+Status at landing - The eagle has landed!
+Testing second message
+Status at landing - Enjoy your oxygen while it lasts!
+Status at landing - Enjoy your oxygen while it lasts!
+Testing third message
+Status at landing - Ouch - that hurt!
+Status at landing - Ouch - that hurt!
+

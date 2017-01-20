@@ -1,0 +1,9 @@
+void scanArray(void *iArr, int dim, int byte, void *id)
+{
+   while ( dim-- )
+   { 
+       scanf(id, iArr);
+       iArr+=byte;
+   }
+}
+

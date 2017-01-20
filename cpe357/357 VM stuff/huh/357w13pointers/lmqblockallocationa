@@ -1,0 +1,9 @@
+int* insert(int* toInsert, int* blk, int dim1, int dim2, int offset)
+{
+  int* toReturn = calloc(IDIM2*(dim1 + dim2));
+  memmove(toReturn, toInsert, offset * IDIM2);
+  memmove(toReturn+offset, blk, dim2 * IDIM2);
+  memmove(toReturn+offset+dim2, toInsert + offset, (dim1 - offset) * IDIM2);
+  free(toInsert);
+  return toReturn;
+}d

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="318" key="DIALOG_WIDTH"/>
+		<item value="157" key="DIALOG_Y_ORIGIN"/>
+		<item value="783" key="DIALOG_X_ORIGIN"/>
+		<item value="423" key="DIALOG_HEIGHT"/>
+		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="print" key="selection"/>
+		<list key="findhistory">
+			<item value="printArray"/>
+			<item value="enqueue"/>
+			<item value="AQueue&lt;Integer&gt;"/>
+			<item value="printTree"/>
+			<item value="BSTNode"/>
+			<item value="print"/>
+			<item value="Queue"/>
+			<item value="queue"/>
+		</list>
+		<list key="replacehistory">
+			<item value="print"/>
+			<item value="insert"/>
+			<item value="BasicAVL"/>
+			<item value="AVLNode"/>
+			<item value="Stack"/>
+			<item value="stack"/>
+			<item value="pop"/>
+			<item value="push"/>
+		</list>
+	</section>
+</section>

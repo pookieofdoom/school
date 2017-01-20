@@ -1,0 +1,5 @@
+Enter test score  1: Enter test score  2: Enter test score  3: Enter test score  4: Enter test score  5: Enter test score  6: Enter test score  7: Enter test score to search for: 
+Number of scores entered: 6
+Test scores entered     : 88 67 74 94 79 67 
+Average test score      : 78.2
+The score 68 does not occur in the array.

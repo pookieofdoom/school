@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+void F1(char *string, void* max)
+{
+   int temp = *(int*)max;
+   int length = strlen(string);
+   *(int*)max = length > temp ? length : temp;
+}
+
+
+void F2(char *string, void *string1)
+{
+   if (*(char **) string1 == NULL)
+   {
+      *(char **)string1 = string;
+   }
+   else if (strcmp(string, *(char**) string1) < 0)
+      *(char **)string1 = string;
+}
+      
+// Call parameter "fp" on each string in "vals", passing it "vals" and also
+// the "data" configuration.  Assume "vals" ends with a NULL element, which
+// is not passed to "fp".
+void ProcessStrings(char *vals[], void (*fp)(char*, void*), void *ptr)
+{
+   int i;
+   for(i = 0 ; vals[i]; i++ )
+   {
+      fp(vals[i], ptr);
+   }
+}
+
+int main() {
+   char *strings1[] = {"beta", "alpha", "gamma", "delta", NULL};
+   char *strings2[] = {"Johnson", "Smith", "Smithson", "Zimmerman", "Jones", NULL};
+   char *strings3[] = {"Mary", "Bill", "Bob", "Zoe", "Annabelle", "Bobby", "Anna", NULL};
+   int maxLen = 0;
+   char *minString = NULL;
+   
+   ProcessStrings(strings1, F1, &maxLen);
+   ProcessStrings(strings1, F2, &minString);
+   printf("Strings1: Max length is %d and min is %s\n", maxLen, minString);
+   
+   maxLen = 0;
+   minString = NULL;
+   ProcessStrings(strings2, F1, &maxLen);
+   ProcessStrings(strings2, F2, &minString);
+   printf("Strings2: Max length is %d and min is %s\n", maxLen, minString);
+
+   maxLen = 0;
+   minString = NULL;
+   ProcessStrings(strings3, F1, &maxLen);
+   ProcessStrings(strings3, F2, &minString);
+   printf("Strings3: Max length is %d and min is %s\n", maxLen, minString);
+}

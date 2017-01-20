@@ -1,0 +1,12 @@
+int countEs(char *str)
+{
+   int count = 0;
+   while ( *str != '\0' )
+   {
+      if ( tolower(*str++) == 'e' )
+      {
+         count++;
+      }
+    }
+    return count;
+}

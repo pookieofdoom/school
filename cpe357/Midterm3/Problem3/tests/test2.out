@@ -1,0 +1,5 @@
+checkSpace: Expected memory allocated
+push 1: 6.73 
+checkSpace: Expected memory allocated
+isEmpty? FALSE
+isStack? TRUE

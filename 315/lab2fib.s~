@@ -1,0 +1,5 @@
+.text       # this starts the code area
+
+main:
+   li $t0, 0
+   li $t1, 1

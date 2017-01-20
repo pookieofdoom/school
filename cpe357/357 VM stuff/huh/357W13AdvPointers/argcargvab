@@ -1,0 +1,15 @@
+void copyArgs(char **argv, char ***dup)
+{
+
+   *dup = calloc(sizeof(argv),sizeof(*argv));
+   int i;
+   for ( i = 0 ; *++argv; i++ )
+   {
+      dup[0][i] = malloc(strlen(*argv));
+      strcpy(dup[0][i], *argv);
+   }
+
+}
+
+
+argv, &dupArgs

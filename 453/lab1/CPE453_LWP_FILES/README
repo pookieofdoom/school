@@ -1,0 +1,14 @@
+Anthony Dinh
+
+Q: “How is this LWP library different from a real thread management library?
+    Name two ways in which this LWP library API could be improved.”
+    
+A: This LWP library can't run two proceses at the same time and any synchronization
+    aspects such as Test, Set, and Lock.
+   
+   A way to improve the LWP library is to make them premptive from non-premptive. 
+    Premptive is generally better since they are more efficient depending on hardware.
+   
+   Another improvement is to add ways to pass messages or data between the threads which
+    thread libraries should be able to do. This will improve the quality of our LWP library.
+    This can probably be done using pipes or sockets.

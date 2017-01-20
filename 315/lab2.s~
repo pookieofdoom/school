@@ -1,0 +1,39 @@
+#Anthony Dinh
+#CPE 315-03 / 315-04
+#4/8/2016
+
+.data	      # this starts the data area
+
+
+   #shift upper to the very end to look at it
+   #add 0x30 (0-9) 0x41 (A-F)
+   # or you can have byte table from 0-F
+   
+   #push
+   #addi $sp, $sp, -4
+   #sw $ra, 0($sp)
+   
+   #pop
+   #lw $ra, 0($sp)
+   #addi $sp, $sp, 4
+   #jr $ra
+   
+   byteTable:  .byte 0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF
+   storeSpace:  .word 0, 0, 0
+   
+.text       # this starts the code area
+
+main:
+   la $t4, #byteTable #load the address of the table
+   la $a1, #result table
+   li $t3, 16
+   li $t2, 28
+   addi $a0, 2863311530 #AAAA AAAA
+   move $a1, $zero
+   
+   
+   
+bintohex:
+   srlv $t1, $a0, $t2
+   andi $t1, 0xF
+    

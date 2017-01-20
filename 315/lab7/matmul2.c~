@@ -1,0 +1,287 @@
+
+#define AMAX 10			/* Maximum (square) array size */
+
+#define CACHESIM 1		/* Set to 1 if simulating Cache */
+#define READ_FLAG 0
+#define WRITE_FLAG 1
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+/*	memory management, code density, Cache emulation - statistics generation */
+/*	Generated for CSC 315 Lab 5 */
+
+
+
+typedef struct 
+{
+   int tag; /*the tag of the entry that comes from the address*/
+}Cache_Entry;
+
+/* Statically define the arrays a, b, and mult, where mult will become the cross product of a and b, i.e., a x b. */
+static int a[AMAX][AMAX], b[AMAX][AMAX], mult[AMAX][AMAX];
+
+static Cache_Entry *cache;
+static int hit, miss = 0;
+static int num_sets;
+static int index_bits;
+static int asso, cache_size;
+static int num_read, num_write = 0;
+
+
+/*integer result for log2 = determine the highest bit set*/
+int my_log2(int x)
+{
+  int temp = x;
+  int highest_bit = 0;
+  while(temp >>=1)
+     ++highest_bit;
+  return highest_bit;
+}
+
+
+/*initialize the cache*/
+void init_cache()
+{
+   num_sets = cache_size / asso;
+   cache = calloc(cache_size, sizeof(Cache_Entry));
+   index_bits = my_log2(num_sets);
+
+}
+
+/*FIFO replacement*/
+void add_to_cache(int index, int tag)
+{
+   int i;
+   
+   for(i = asso - 1; i > 0; i--)
+   {
+      cache[index + i].tag = cache[index + i - 1].tag;  
+   }
+   cache[index].tag = tag;
+   
+}
+
+
+/*check if tag exist in cache*/
+void check_cache(int index, int tag, int read_write_flag)
+{
+   int i;
+   int update_idx;
+   int flag_found = 0;
+   
+   /*check if in cache*/
+   for (i = 0; i < asso; i++)
+   {
+      update_idx = index + i;
+      if (cache[update_idx].tag == tag) 
+      {
+         //printf("HIT! at tag %X\n", tag);
+         if (read_write_flag == READ_FLAG)
+            hit++;
+         flag_found = 1;
+         break;
+      }
+   }
+   
+   /*miss so add to cache*/
+   if(!flag_found)
+   {
+      miss++;
+      add_to_cache(index, tag);
+   }
+   /*if it is mem_write, always count as miss b/c write-through*/
+   else
+   {
+      if (read_write_flag == WRITE_FLAG)
+      {
+         miss++;
+      }
+   }
+}
+
+
+
+/* This function gets called with each "read" reference to memory */
+
+void mem_read(int *mp)
+{
+   //printf("Memory read from location %p\n", mp);
+   int address = (int) mp;
+   int bit_mask = (1 << index_bits) - 1;
+   //printf("this is bit mask %X\n", bit_mask);
+   int index = (address & (bit_mask << 2)) >> 2;
+   int tag_size = 32 - index_bits - 2;
+   int tag_mask = (1 << tag_size) - 1;
+   /*byte offset will always be 2 since 32 bit address*/
+   int tag = (address >> (index_bits + 2)) & tag_mask;
+   //printf("this is tag %X\n", tag);
+   check_cache(index, tag, READ_FLAG);
+   num_read++;
+}
+
+
+/* This function gets called with each "write" reference to memory */
+
+/*write through so it will always be a miss*/
+
+void mem_write(int *mp)
+{
+   int address = (int) mp;
+   int bit_mask = (1 << index_bits) - 1;
+   //printf("this is bit mask %X\n", bit_mask);
+   int index = (address & (bit_mask << 2)) >> 2;
+   int tag_size = 32 - index_bits - 2;
+   int tag_mask = (1 << tag_size) - 1;
+   /*byte offset will always be 2 since 32 bit address*/
+   int tag = (address >> (index_bits + 2)) & tag_mask;
+   check_cache(index, tag, WRITE_FLAG);
+   //printf("Memory write to location %p\n", mp);
+   //printf("this is tag %X\n", tag);
+   num_write++;
+
+}
+
+
+void matmul( r1, c1, c2 )
+{
+   int i,j,k;
+   int *mp1, *mp2, *mp3;
+
+
+
+   /* Initializing elements of matrix mult to 0.*/
+   for(i=0; i<r1; ++i)
+   {
+      for(j=0; j<c2; ++j)
+      {
+         mult[i][j]=0;
+      }
+   }
+
+
+   /* Multiplying matrix a and b and storing in array mult. */
+
+   for(i=0; i<r1; ++i)
+   {
+      for(j=0; j<c2; ++j)
+      {
+         for(k=0; k<c1; ++k)
+         {
+
+            #if CACHESIM		/* "Hooks" to measure memory references - enabled if CACHESIM  */
+
+               mp1 = &mult[i][j];
+               mp2 = &a[i][k];
+               mp3 = &b[k][j];   
+               mem_read(mp1);
+               mem_read(mp2);
+               mem_read(mp3);
+               mem_write(mp1); 
+            #endif
+
+            mult[i][j] = mult[i][j] + a[i][k]*b[k][j];
+
+         }
+      }
+   }
+
+
+}
+
+void print_output(int r1, int c1)
+{
+   printf("Matrix Multiplication of %dx%d\n", r1, c1);
+   printf("Cache Size: %d\tAssociativity: %d\n", cache_size, asso);
+   printf("Total Reads: %d\tTotal Writes: %d\t Ratio: %d\n", num_read, num_write, num_read/num_write);
+   printf("Hits: %d\tMisses: %d\tHit Rate: %.2f\n", hit, miss, (hit * 1.0) / (hit+miss));
+}
+
+
+
+int main()
+{
+   int r1, c1, r2, c2, i, j;
+   printf("Enter rows and column for first matrix: ");
+   scanf("%d%d", &r1, &c1);
+   printf("Enter rows and column for second matrix: ");
+   scanf("%d%d",&r2, &c2);
+  
+
+   /* If column of first matrix in not equal to row of second matrix, asking user to enter the size of matrix again. */
+   while (c1 != r2)
+   {
+      printf("Error! column of first matrix not equal to row of second.\n");
+      printf("Enter rows and column for first matrix: ");
+      scanf("%d%d", &r1, &c1);
+      printf("Enter rows and column for second matrix: ");
+      scanf("%d%d",&r2, &c2);
+   }
+   
+   /* getting cache size*/
+   
+   printf("Enter Cache Size: (16 or 256 words): ");
+   scanf("%d", &cache_size);
+   
+   while (cache_size != 16 && cache_size != 256)
+   {
+      printf("Error! cache size is not 16 or 256\n");
+      printf("Enter Cache Size: (16 or 256 words): ");
+      scanf("%d", &cache_size);
+   }
+   /*ask retz about cache size*/
+   //cache = calloc(cache_size, sizeof(Cache_Entry));
+   
+   printf("Enter Set Associativity (1, 2, or 4): ");
+   scanf("%d", &asso);
+   
+   while (asso != 1 && asso != 2 && asso != 4)
+   {
+      printf("Error! Associativity is not 1, 2, or 4\n");
+      printf("Enter Set Associativity (1, 2, or 4): ");
+      scanf("%d", &asso);
+   }
+   
+   init_cache(cache_size, asso);
+
+   /* Storing elements of first matrix. */
+
+   printf("\nEnter elements of matrix 1:\n");
+   for(i=0; i<r1; ++i)
+   for(j=0; j<c1; ++j)
+   {
+      //        printf("Enter elements a%d%d: ",i+1,j+1);
+      //        scanf("%d",&a[i][j]);
+      a[i][j] = i+j; // build sample data
+
+   }
+
+   /* Storing elements of second matrix. */
+   printf("\nEnter elements of matrix 2:\n");
+   for(i=0; i<r2; ++i)
+   for(j=0; j<c2; ++j)
+   {
+      //        printf("Enter elements b%d%d: ",i+1,j+1);
+      //        scanf("%d",&b[i][j]);
+
+      b[i][j] = 10 + i + j;
+   }
+
+
+   matmul(r1, c1, c2);  	/* Invoke matrix multiply function */	
+
+
+   /* Displaying the multiplication of two matrix. */
+   printf("\nOutput Matrix:\n");
+   for(i=0; i<r1; ++i)
+   for(j=0; j<c2; ++j)
+   {
+      printf("%d  ",mult[i][j]);
+      if(j==c2-1)
+      printf("\n\n");
+   }
+   
+   print_output(r1, c1);
+   return 0;
+}

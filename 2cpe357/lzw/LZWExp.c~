@@ -1,0 +1,61 @@
+#include "LZWExp.h"
+#include <stdio.h>
+#include "CodeSet.h"
+#include "BitUnpacker.h"
+#include "SmartAlloc.h"
+
+#define EOD 256
+#define INITBITS 9
+#define MAXBIT 4096
+#define BITS_INTEGER 32
+
+
+
+   
+int findMaxCode(int numBits) {
+   int maxCode = 1;
+   int i =0;
+   for (i = 0; i < numBits; i++) {
+      maxCode *= 2;
+   }
+   //if i can include math.h  i can use pow
+   return maxCode -1;
+}
+//initial dictionary starts with 255 codes with EOD at 256
+void InitDict(LZWExp *exp) {
+   int i;
+   for (i = 0; i <= EOD; i++) {
+      NewCode(exp->dict, i);
+   }
+
+}
+
+
+void LZWExpInit(LZWExp *exp, DataSink sink, void *sinkState, int recycleCode) {
+   exp->dict = CreateCodeSet(MAXBIT);
+   exp->sink = sink;
+   exp->sinkState = sinkState;
+   exp->lastCode = EOD; //EOD should be last code in initial dictionary
+   exp->numBits = INITBITS; //initial num of bits of have which is 9 bits for 256 bits
+   exp->maxCode = findMaxCode(exp->numBits);
+   exp->recycleCode = recycleCode;
+   BuInit(&exp->bitUnpacker);
+   exp->EODSeen = 0;
+   InitDict(exp);   
+}
+
+
+/* Break apart compressed data in "bits" into one or more codes and send 
+ * the corresponding symbol sequences to the DataSink.  Save any leftover 
+ * compressed bits to combine with the bits from the next call of 
+ * LZWExpEncode.  Return 0 on success or BAD_CODE if you receive a code not
+ * in the dictionary.
+ *
+ * For this and all other methods, a code is "invalid" if it either could not
+ * have been sent (e.g. is too high) or if it is a nonzero code following
+ * the detection of an EOD code.
+ */
+int LZWExpDecode(LZWExp *exp, UInt bits) {
+   buTakeData(exp->bitunpacker
+   
+}

@@ -1,0 +1,9 @@
+void RemoveBlanks(char *s1) {
+	char *p1 = s1;
+	do
+	{
+		while (isspace(*p1))
+			p1++;
+	}
+	while (*s1++ = *p1++);
+}

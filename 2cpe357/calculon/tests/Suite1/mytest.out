@@ -1,0 +1,5 @@
+a.out test 1 failed: diff failure, runtime error
+a.out test 2 failed: diff failure, runtime error
+a.out test 3 failed: diff failure, runtime error
+b.out test 1 failed: diff failure, runtime error
+b.out test 2 failed: diff failure, runtime error

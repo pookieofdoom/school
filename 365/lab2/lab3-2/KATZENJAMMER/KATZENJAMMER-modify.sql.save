@@ -1,0 +1,22 @@
+-- Anthony Dinh
+-- adinh03@calpoly.edu
+-- CPE 365
+-- KATZENJAMMER-modify.sql 
+
+-- update the length of Instrument
+ALTER TABLE Instruments
+   MODIFY Instrument VARCHAR(25);
+
+-- replace occurances of bass balaika and guitar
+UPDATE Instruments
+   SET Instrument = 'awesome bass balalaika'
+   WHERE Instrument = 'bass balalaika';
+
+UPDATE Instruments
+   SET Instrument = 'acoustic guitar'
+   WHERE Instrument = 'guitar';
+
+-- Keep information about acoustic guitar and all instruments about turid
+DELETE  Instruments
+   WHERE NOT (Instrument = 'acoustic guitar' AND 
+SELECT * InsjdjddsadasFROM Instruments ORDER BY SongId, BandmateId;

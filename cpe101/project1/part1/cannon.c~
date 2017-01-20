@@ -1,0 +1,51 @@
+/* Project 1
+ *
+ * Name: Anthony Dinh
+ * Instructor: Hatalsky 
+ * Section: 03
+ */
+
+#include <stdio.h>
+#include <math.h>
+#define GRAVITY 9.8
+
+double distance(double velocity, double time);
+
+int main()
+{
+   double height, distance_of_ship, width_of_ship, velocity, distance_of_ball;
+   
+   printf("Enter the height of the cliff (meters): ");
+   scanf("%lf", &height);
+   
+   printf("Enter the distance of the ship from the cliff (meters): ");
+   scanf("%lf", &distance_of_ship);
+   
+   printf("Enter the width of the ship (meters): ");
+   scanf("%lf", &width_of_ship);
+   
+   printf("Enter the velocity of the cannon ball (meters/second): ");
+   scanf("%lf", &velocity);
+   
+   distance_of_ball = distance(velocity, height); 
+   printf("Distance of ball: %f meters\n", distance_of_ball);
+   
+   if((distance_of_ball >= distance_of_ship + width_of_ship/2) && 
+     (distance_of_ball <= (distance_of_ship - width_of_ship/2)))
+   {
+      printf("Direct hit!!!\n");
+   }
+   else
+   {
+      printf("You missed!\n");
+   }
+   return 0;
+}
+
+double distance(double velocity, double height)
+{
+   double dist, time;
+   time = sqrt(height/(GRAVITY/2));
+   dist = velocity * time;
+   return dist;
+}

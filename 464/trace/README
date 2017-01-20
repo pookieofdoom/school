@@ -1,0 +1,10 @@
+Name: Anthony Dinh   Lab Section : 9 am
+
+Notes:
+1. Even though Professor Smith said malloc was not needed, I had to malloc for
+my structs because after TCP struct i would eventually seg fault and the fix
+for it was to use malloc.
+
+2. It seems like my program has trouble with pcap files that have huge packet sizes
+but it should pass all the test cases and I have chosen pcap files that are similar
+in size to that of largeMix1 and largeMix2

@@ -1,0 +1,22 @@
+--------------
+SELECT Grade, COUNT(LastName)
+From List
+GROUP BY Grade
+HAVING COUNT(LastName) < 
+   (SELECT MAX(StudentCount)
+   FROM (SELECT Classroom, COUNT(LastName) as StudentCount
+         FROM List
+         GROUP BY CLassroom) 
+   AS Q)
+--------------
+
++-------+-----------------+
+| Grade | COUNT(LastName) |
++-------+-----------------+
+|     2 |               3 |
+|     3 |               6 |
+|     6 |               3 |
++-------+-----------------+
+3 rows in set (0.00 sec)
+
+

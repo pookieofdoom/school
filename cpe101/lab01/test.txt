@@ -1,0 +1,1 @@
+cp ~phatalsk/www/101/labs/Lab01/addInst .

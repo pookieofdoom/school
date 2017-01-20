@@ -1,0 +1,272 @@
+::FIFO TESTS::
+--------------------------------
+./schedSim.py jobs1.txt -p FIFO
+Job   0 -- Response: 1.00  Turnaround 8.00  Wait 0.00
+Job   1 -- Response: 8.00  Turnaround 19.00  Wait 7.00
+Job   2 -- Response: 18.00  Turnaround 20.00  Wait 17.00
+Job   3 -- Response: 23.00  Turnaround 28.00  Wait 22.00
+Job   4 -- Response: 20.00  Turnaround 22.00  Wait 19.00
+Average -- Response: 14.00  Turnaround 19.40  Wait 13.00
+--------------------------------
+--------------------------------
+./schedSim.py jobs2.txt -p FIFO
+Job   0 -- Response: 1.00  Turnaround 8.00  Wait 0.00
+Job   1 -- Response: 8.60  Turnaround 11.60  Wait 7.60
+Job   2 -- Response: 12.00  Turnaround 12.00  Wait 11.00
+Average -- Response: 7.20  Turnaround 10.53  Wait 6.20
+--------------------------------
+--------------------------------
+./schedSim.py jobs3.txt -p FIFO
+Job   0 -- Response: 1.00  Turnaround 9.00  Wait 0.00
+Job   1 -- Response: 9.00  Turnaround 13.00  Wait 8.00
+Job   2 -- Response: 13.00  Turnaround 15.00  Wait 12.00
+Job   3 -- Response: 15.00  Turnaround 18.00  Wait 14.00
+Average -- Response: 9.50  Turnaround 13.75  Wait 8.50
+--------------------------------
+--------------------------------
+./schedSim.py jobs4.txt -p FIFO
+Job   0 -- Response: 1.00  Turnaround 8.00  Wait 0.00
+Job   1 -- Response: 8.00  Turnaround 11.00  Wait 7.00
+Job   2 -- Response: 11.00  Turnaround 19.00  Wait 10.00
+Job   3 -- Response: 19.00  Turnaround 23.00  Wait 18.00
+Average -- Response: 9.75  Turnaround 15.25  Wait 8.75
+--------------------------------
+--------------------------------
+./schedSim.py jobs5.txt -p FIFO
+Job   0 -- Response: 1.00  Turnaround 7.00  Wait 0.00
+Job   1 -- Response: 6.00  Turnaround 9.00  Wait 5.00
+Job   2 -- Response: 8.00  Turnaround 8.00  Wait 7.00
+Job   3 -- Response: 8.00  Turnaround 11.00  Wait 7.00
+Average -- Response: 5.75  Turnaround 8.75  Wait 4.75
+--------------------------------
+--------------------------------
+./schedSim.py jobs6.txt -p FIFO
+Job   0 -- Response: 28.00  Turnaround 30.00  Wait 27.00
+Job   1 -- Response: 25.00  Turnaround 27.00  Wait 24.00
+Job   2 -- Response: 1.00  Turnaround 24.00  Wait 0.00
+Average -- Response: 18.00  Turnaround 27.00  Wait 17.00
+--------------------------------
+--------------------------------
+./schedSim.py jobs7.txt -p FIFO
+Job   0 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   1 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   2 -- Response: 1.00  Turnaround 40.00  Wait 0.00
+Job   3 -- Response: 36.00  Turnaround 43.00  Wait 35.00
+Job   4 -- Response: 17.00  Turnaround 111.00  Wait 16.00
+Job   5 -- Response: 68.00  Turnaround 79.00  Wait 67.00
+Job   6 -- Response: 1.00  Turnaround 800.00  Wait 0.00
+Job   7 -- Response: 345.00  Turnaround 466.00  Wait 344.00
+Average -- Response: 58.75  Turnaround 193.12  Wait 57.75
+--------------------------------
+--------------------------------
+./schedSim.py jobs8.txt -p FIFO
+Job   0 -- Response: 1.00  Turnaround 7.00  Wait 0.00
+Job   1 -- Response: 6.00  Turnaround 9.00  Wait 5.00
+Job   2 -- Response: 8.00  Turnaround 8.00  Wait 7.00
+Job   3 -- Response: 8.00  Turnaround 11.00  Wait 7.00
+Average -- Response: 5.75  Turnaround 8.75  Wait 4.75
+--------------------------------
+::ROUND ROBIN TESTS w/ Q = 1::
+--------------------------------
+./schedSim.py jobs1.txt -p RR
+Job   0 -- Response: 1.00  Turnaround 27.00  Wait 19.00
+Job   1 -- Response: 1.00  Turnaround 31.00  Wait 19.00
+Job   2 -- Response: 1.00  Turnaround 11.00  Wait 8.00
+Job   3 -- Response: 1.00  Turnaround 21.00  Wait 15.00
+Job   4 -- Response: 2.00  Turnaround 12.00  Wait 9.00
+Average -- Response: 1.20  Turnaround 20.40  Wait 14.00
+--------------------------------
+--------------------------------
+./schedSim.py jobs2.txt -p RR
+Job   0 -- Response: 1.00  Turnaround 13.00  Wait 5.00
+Job   1 -- Response: 1.60  Turnaround 8.60  Wait 4.60
+Job   2 -- Response: 2.00  Turnaround 2.00  Wait 1.00
+Average -- Response: 1.53  Turnaround 7.87  Wait 3.53
+--------------------------------
+--------------------------------
+./schedSim.py jobs3.txt -p RR
+Job   0 -- Response: 1.00  Turnaround 21.00  Wait 12.00
+Job   1 -- Response: 1.00  Turnaround 16.00  Wait 11.00
+Job   2 -- Response: 1.00  Turnaround 9.00  Wait 6.00
+Job   3 -- Response: 1.00  Turnaround 12.00  Wait 8.00
+Average -- Response: 1.00  Turnaround 14.50  Wait 9.25
+--------------------------------
+--------------------------------
+./schedSim.py jobs4.txt -p RR
+Job   0 -- Response: 1.00  Turnaround 24.00  Wait 16.00
+Job   1 -- Response: 1.00  Turnaround 13.00  Wait 9.00
+Job   2 -- Response: 1.00  Turnaround 24.00  Wait 15.00
+Job   3 -- Response: 1.00  Turnaround 16.00  Wait 11.00
+Average -- Response: 1.00  Turnaround 19.25  Wait 12.75
+--------------------------------
+--------------------------------
+./schedSim.py jobs5.txt -p RR
+Job   0 -- Response: 1.00  Turnaround 16.00  Wait 9.00
+Job   1 -- Response: 1.00  Turnaround 11.00  Wait 7.00
+Job   2 -- Response: 1.00  Turnaround 1.00  Wait 0.00
+Job   3 -- Response: 1.00  Turnaround 10.00  Wait 6.00
+Average -- Response: 1.00  Turnaround 9.50  Wait 5.50
+--------------------------------
+--------------------------------
+./schedSim.py jobs6.txt -p RR
+Job   0 -- Response: 3.00  Turnaround 9.00  Wait 5.00
+Job   1 -- Response: 2.00  Turnaround 8.00  Wait 5.00
+Job   2 -- Response: 1.00  Turnaround 30.00  Wait 6.00
+Average -- Response: 2.00  Turnaround 15.67  Wait 5.33
+--------------------------------
+--------------------------------
+./schedSim.py jobs7.txt -p RR
+Job   0 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   1 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   2 -- Response: 1.00  Turnaround 64.00  Wait 24.00
+Job   3 -- Response: 1.00  Turnaround 15.00  Wait 7.00
+Job   4 -- Response: 1.00  Turnaround 123.00  Wait 28.00
+Job   5 -- Response: 1.00  Turnaround 23.00  Wait 11.00
+Job   6 -- Response: 1.00  Turnaround 922.00  Wait 122.00
+Job   7 -- Response: 1.00  Turnaround 243.00  Wait 121.00
+Average -- Response: 1.00  Turnaround 174.50  Wait 39.12
+--------------------------------
+--------------------------------
+./schedSim.py jobs8.txt -p RR
+Job   0 -- Response: 1.00  Turnaround 16.00  Wait 9.00
+Job   1 -- Response: 1.00  Turnaround 11.00  Wait 7.00
+Job   2 -- Response: 1.00  Turnaround 1.00  Wait 0.00
+Job   3 -- Response: 1.00  Turnaround 10.00  Wait 6.00
+Average -- Response: 1.00  Turnaround 9.50  Wait 5.50
+--------------------------------
+::ROUND ROBIN TESTS w/ NON-DEFAULT QUANTA::
+--------------------------------
+./schedSim.py jobs1.txt -p RR -q 1
+Job   0 -- Response: 1.00  Turnaround 27.00  Wait 19.00
+Job   1 -- Response: 1.00  Turnaround 31.00  Wait 19.00
+Job   2 -- Response: 1.00  Turnaround 11.00  Wait 8.00
+Job   3 -- Response: 1.00  Turnaround 21.00  Wait 15.00
+Job   4 -- Response: 2.00  Turnaround 12.00  Wait 9.00
+Average -- Response: 1.20  Turnaround 20.40  Wait 14.00
+--------------------------------
+--------------------------------
+./schedSim.py jobs2.txt -p RR -q 2
+Job   0 -- Response: 1.00  Turnaround 13.00  Wait 5.00
+Job   1 -- Response: 2.60  Turnaround 8.60  Wait 4.60
+Job   2 -- Response: 4.00  Turnaround 4.00  Wait 3.00
+Average -- Response: 2.53  Turnaround 8.53  Wait 4.20
+--------------------------------
+--------------------------------
+./schedSim.py jobs3.txt -p RR -q 3
+Job   0 -- Response: 1.00  Turnaround 21.00  Wait 12.00
+Job   1 -- Response: 9.00  Turnaround 17.00  Wait 9.00
+Job   2 -- Response: 5.00  Turnaround 7.00  Wait 4.00
+Job   3 -- Response: 1.00  Turnaround 13.00  Wait 9.00
+Average -- Response: 4.00  Turnaround 14.50  Wait 8.50
+--------------------------------
+--------------------------------
+./schedSim.py jobs4.txt -p RR -q 4
+Job   0 -- Response: 1.00  Turnaround 20.00  Wait 12.00
+Job   1 -- Response: 12.00  Turnaround 15.00  Wait 7.00
+Job   2 -- Response: 7.00  Turnaround 24.00  Wait 15.00
+Job   3 -- Response: 2.00  Turnaround 18.00  Wait 13.00
+Average -- Response: 5.50  Turnaround 19.25  Wait 11.75
+--------------------------------
+--------------------------------
+./schedSim.py jobs5.txt -p RR -q 5
+Job   0 -- Response: 1.00  Turnaround 16.00  Wait 9.00
+Job   1 -- Response: 9.00  Turnaround 12.00  Wait 4.00
+Job   2 -- Response: 6.00  Turnaround 6.00  Wait 5.00
+Job   3 -- Response: 1.00  Turnaround 4.00  Wait 0.00
+Average -- Response: 4.25  Turnaround 9.50  Wait 4.50
+--------------------------------
+--------------------------------
+./schedSim.py jobs6.txt -p RR -q 6
+Job   0 -- Response: 10.00  Turnaround 12.00  Wait 8.00
+Job   1 -- Response: 7.00  Turnaround 9.00  Wait 6.00
+Job   2 -- Response: 1.00  Turnaround 30.00  Wait 6.00
+Average -- Response: 6.00  Turnaround 17.00  Wait 6.67
+--------------------------------
+--------------------------------
+./schedSim.py jobs7.txt -p RR -q 7
+Job   0 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   1 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   2 -- Response: 1.00  Turnaround 62.00  Wait 22.00
+Job   3 -- Response: 3.00  Turnaround 17.00  Wait 9.00
+Job   4 -- Response: 5.00  Turnaround 123.00  Wait 28.00
+Job   5 -- Response: 1.00  Turnaround 19.00  Wait 7.00
+Job   6 -- Response: 1.00  Turnaround 922.00  Wait 122.00
+Job   7 -- Response: 7.00  Turnaround 247.00  Wait 125.00
+Average -- Response: 2.50  Turnaround 174.50  Wait 39.12
+--------------------------------
+--------------------------------
+./schedSim.py jobs8.txt -p RR -q 8
+Job   0 -- Response: 1.00  Turnaround 7.00  Wait 0.00
+Job   1 -- Response: 11.00  Turnaround 14.00  Wait 4.00
+Job   2 -- Response: 8.00  Turnaround 8.00  Wait 7.00
+Job   3 -- Response: 3.00  Turnaround 6.00  Wait 2.00
+Average -- Response: 5.75  Turnaround 8.75  Wait 3.25
+--------------------------------
+::SHORTEST REMAINING JOB FIRST::
+--------------------------------
+./schedSim.py jobs1.txt -p SRJN
+Job   0 -- Response: 1.00  Turnaround 14.00  Wait 6.00
+Job   1 -- Response: 20.00  Turnaround 31.00  Wait 18.00
+Job   2 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   3 -- Response: 11.00  Turnaround 16.00  Wait 9.00
+Job   4 -- Response: 3.00  Turnaround 5.00  Wait 0.00
+Average -- Response: 7.20  Turnaround 13.80  Wait 6.60
+--------------------------------
+--------------------------------
+./schedSim.py jobs2.txt -p SRJN
+Job   0 -- Response: 1.00  Turnaround 13.00  Wait 5.00
+Job   1 -- Response: 1.60  Turnaround 5.60  Wait 1.60
+Job   2 -- Response: 2.00  Turnaround 2.00  Wait 1.00
+Average -- Response: 1.53  Turnaround 6.87  Wait 2.53
+--------------------------------
+--------------------------------
+./schedSim.py jobs3.txt -p SRJN
+Job   0 -- Response: 1.00  Turnaround 21.00  Wait 12.00
+Job   1 -- Response: 1.00  Turnaround 12.00  Wait 7.00
+Job   2 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   3 -- Response: 3.00  Turnaround 6.00  Wait 1.00
+Average -- Response: 1.50  Turnaround 10.50  Wait 5.00
+--------------------------------
+--------------------------------
+./schedSim.py jobs4.txt -p SRJN
+Job   0 -- Response: 1.00  Turnaround 17.00  Wait 9.00
+Job   1 -- Response: 1.00  Turnaround 4.00  Wait 0.00
+Job   2 -- Response: 16.00  Turnaround 24.00  Wait 14.00
+Job   3 -- Response: 3.00  Turnaround 7.00  Wait 1.00
+Average -- Response: 5.25  Turnaround 13.00  Wait 6.00
+--------------------------------
+--------------------------------
+./schedSim.py jobs5.txt -p SRJN
+Job   0 -- Response: 1.00  Turnaround 16.00  Wait 9.00
+Job   1 -- Response: 1.00  Turnaround 5.00  Wait 1.00
+Job   2 -- Response: 1.00  Turnaround 1.00  Wait 0.00
+Job   3 -- Response: 3.00  Turnaround 6.00  Wait 1.00
+Average -- Response: 1.50  Turnaround 7.00  Wait 2.75
+--------------------------------
+--------------------------------
+./schedSim.py jobs6.txt -p SRJN
+Job   0 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   1 -- Response: 4.00  Turnaround 6.00  Wait 1.00
+Job   2 -- Response: 7.00  Turnaround 30.00  Wait 5.00
+Average -- Response: 4.00  Turnaround 13.00  Wait 2.00
+--------------------------------
+--------------------------------
+./schedSim.py jobs7.txt -p SRJN
+Job   0 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   1 -- Response: 1.00  Turnaround 3.00  Wait 0.00
+Job   2 -- Response: 1.00  Turnaround 48.00  Wait 8.00
+Job   3 -- Response: 1.00  Turnaround 8.00  Wait 0.00
+Job   4 -- Response: 17.00  Turnaround 123.00  Wait 27.00
+Job   5 -- Response: 1.00  Turnaround 12.00  Wait 0.00
+Job   6 -- Response: 1.00  Turnaround 922.00  Wait 122.00
+Job   7 -- Response: 1.00  Turnaround 122.00  Wait 0.00
+Average -- Response: 3.00  Turnaround 155.12  Wait 19.62
+--------------------------------
+--------------------------------
+./schedSim.py jobs8.txt -p SRJN
+Job   0 -- Response: 1.00  Turnaround 16.00  Wait 9.00
+Job   1 -- Response: 1.00  Turnaround 5.00  Wait 1.00
+Job   2 -- Response: 1.00  Turnaround 1.00  Wait 0.00
+Job   3 -- Response: 3.00  Turnaround 6.00  Wait 1.00
+Average -- Response: 1.50  Turnaround 7.00  Wait 2.75
+--------------------------------

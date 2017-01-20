@@ -1,0 +1,592 @@
++-------+-------------+
+| Grade | ClassCounts |
++-------+-------------+
+|     0 |           3 |
+|     4 |           3 |
++-------+-------------+
+2 rows in set (0.00 sec)
+
++-------+---------------+
+| Grade | LastNameCount |
++-------+---------------+
+|     4 |             3 |
++-------+---------------+
+1 row in set (0.00 sec)
+
++-----------+-----------+----------+--------------+
+| Classroom | FirstName | LastName | StudentCount |
++-----------+-----------+----------+--------------+
+|       108 | LORIA     | ONDERSMA |            2 |
++-----------+-----------+----------+--------------+
+1 row in set (0.00 sec)
+
++----------+
+| COUNT(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.00 sec)
+
++-------+------------+
+| Grade | GradeCount |
++-------+------------+
+|     2 |          3 |
+|     3 |          6 |
+|     6 |          3 |
++-------+------------+
+3 rows in set (0.00 sec)
+
++-----------+-----------+--------------+
+| Classroom | Classroom | StudentCount |
++-----------+-----------+--------------+
+|       112 |       101 |            3 |
+|       111 |       104 |            4 |
+|       105 |       103 |            5 |
+|       110 |       107 |            6 |
+|       106 |       102 |            7 |
++-----------+-----------+--------------+
+5 rows in set (0.00 sec)
+
++-------+----------+
+| Grade | LastName |
++-------+----------+
+|     0 | TARRING  |
+|     1 | COVIN    |
+|     4 | SUMPTION |
++-------+----------+
+3 rows in set (0.00 sec)
+
++-----------+----------+
+| FirstName | LastName |
++-----------+----------+
+| RUPERT    | HELING   |
++-----------+----------+
+1 row in set (0.00 sec)
+
++-----------+------------+
+| FirstName | LastName   |
++-----------+------------+
+| TERRELL   | ARZT       |
+| ALMETA    | DOMKOWSKI  |
+| CORETTA   | DUKELOW    |
+| SIXTA     | ENGLEY     |
+| TRAVIS    | ESPOSITA   |
+| CUC       | HAFFERKAMP |
+| RUPERT    | HELING     |
+| CHARLENE  | MESDAQ     |
+| NATACHA   | STENZ      |
++-----------+------------+
+9 rows in set (0.00 sec)
+
++------+--------+
+| Food | Flavor |
++------+--------+
+| Cake | Casino |
++------+--------+
+1 row in set (0.00 sec)
+
++------+--------+
+| Food | Flavor |
++------+--------+
+| Tart | Apple  |
++------+--------+
+1 row in set (0.00 sec)
+
++------------+
+| Date       |
++------------+
+| 2007-10-01 |
++------------+
+1 row in set (0.00 sec)
+
++-----------+------------+----------------+--------------+
+| FirstName | LastName   | TotalPurchases | MAX(R2.Date) |
++-----------+------------+----------------+--------------+
+| CUC       | HAFFERKAMP |              6 | 2007-10-28   |
+| TRAVIS    | ESPOSITA   |              6 | 2007-10-31   |
+| SIXTA     | ENGLEY     |              6 | 2007-10-21   |
+| CHARLENE  | MESDAQ     |              7 | 2007-10-25   |
+| NATACHA   | STENZ      |              7 | 2007-10-31   |
+| CORETTA   | DUKELOW    |              8 | 2007-10-21   |
+| ALMETA    | DOMKOWSKI  |              8 | 2007-10-29   |
+| KIP       | ARNN       |              9 | 2007-10-21   |
+| OSVALDO   | DUNLOW     |             10 | 2007-10-29   |
+| ARIANE    | CRUZEN     |             11 | 2007-10-25   |
+| DAVID     | CALLENDAR  |             11 | 2007-10-29   |
++-----------+------------+----------------+--------------+
+11 rows in set (0.01 sec)
+
++------------+------+-----------+-----------+--------------+
+| Flavor     | Food | FirstName | LastName  | MaxPurchases |
++------------+------+-----------+-----------+--------------+
+| Casino     | Cake | ARIANE    | CRUZEN    |            3 |
+| Napoleon   | Cake | CORETTA   | DUKELOW   |            3 |
+| Casino     | Cake | JULIET    | LOGAN     |            3 |
+| Casino     | Cake | JOSETTE   | SLINGLAND |            3 |
+| Opera      | Cake | SHARRON   | TOUSSAND  |            3 |
+| Lemon      | Cake | TRAVIS    | ESPOSITA  |            2 |
+| Lemon      | Cake | MELLIE    | MCMAHAN   |            2 |
+| Truffle    | Cake | JOSETTE   | SLINGLAND |            2 |
+| Strawberry | Cake | JOSETTE   | SLINGLAND |            2 |
+| Lemon      | Cake | MIGDALIA  | STADICK   |            2 |
+| Truffle    | Cake | SHARRON   | TOUSSAND  |            2 |
++------------+------+-----------+-----------+--------------+
+11 rows in set (0.00 sec)
+
++-----------+------------+
+| FirstName | LastName   |
++-----------+------------+
+| CUC       | HAFFERKAMP |
+| MELLIE    | MCMAHAN    |
++-----------+------------+
+2 rows in set (0.00 sec)
+
++-----------+-----------+------------+
+| FirstName | LastName  | Date       |
++-----------+-----------+------------+
+| JOSETTE   | SLINGLAND | 2007-10-01 |
+| RUPERT    | HELING    | 2007-10-03 |
+| CORETTA   | DUKELOW   | 2007-10-03 |
+| DAVID     | CALLENDAR | 2007-10-07 |
++-----------+-----------+------------+
+4 rows in set (0.00 sec)
+
++-----------+------+
+| Flavor    | Food |
++-----------+------+
+| Chocolate | Cake |
++-----------+------+
+1 row in set (0.00 sec)
+
++-----------------+------+
+| MakeDescription | Year |
++-----------------+------+
+| mazda glc       | 1980 |
++-----------------+------+
+1 row in set (0.00 sec)
+
++-------------------+------+
+| MakeDescription   | Year |
++-------------------+------+
+| plymouth cuda 340 | 1970 |
++-------------------+------+
+1 row in set (0.00 sec)
+
++-------------+------------+
+| CountryName | Maker      |
++-------------+------------+
+| france      | peugeaut   |
+| germany     | volkswagen |
+| italy       | fiat       |
+| japan       | toyota     |
+| sweden      | volvo      |
+| uk          | triumph    |
+| usa         | gm         |
++-------------+------------+
+7 rows in set (0.00 sec)
+
++------+------------------------+---------+--------------------+
+| Year | FullName               | NumCars | MinAccel           |
++------+------------------------+---------+--------------------+
+| 1970 | Chrysler               |       7 |                 11 |
+| 1971 | American Motor Company |       3 |                 14 |
+| 1971 | Opel                   |       1 |                 14 |
+| 1972 | American Motor Company |       2 |                 12 |
+| 1973 | General Motors         |      11 | 13.318181818181818 |
+| 1974 | Opel                   |       1 |               14.5 |
+| 1975 | Saab                   |       1 |               13.5 |
+| 1976 | Volkswagen             |       2 | 13.199999809265137 |
+| 1977 | BMW                    |       1 | 12.800000190734863 |
+| 1978 | Volvo                  |       1 | 13.600000381469727 |
+| 1979 | Volkswagen             |       1 |                 14 |
+| 1980 | Triumph                |       1 | 15.100000381469727 |
+| 1981 | Volkswagen             |       1 | 14.199999809265137 |
+| 1982 | Chrysler               |       5 | 13.960000038146973 |
++------+------------------------+---------+--------------------+
+14 rows in set (0.00 sec)
+
++-----------------------+------+-------------+
+| MakeDescription       | Year | CountryName |
++-----------------------+------+-------------+
+| oldsmobile cutlass ls | 1981 | usa         |
++-----------------------+------+-------------+
+1 row in set (0.00 sec)
+
++-----------------------------+
+| MostFE.Best - LeastFE.Least |
++-----------------------------+
+|           8.600000381469727 |
++-----------------------------+
+1 row in set (0.00 sec)
+
++-------------+---------------------+------+--------+
+| CountryName | MakeDescription     | Year | Weight |
++-------------+---------------------+------+--------+
+| france      | peugeot 604sl       | 1978 |   3410 |
+| germany     | mercedes-benz 280s  | 1976 |   3820 |
+| italy       | fiat 131            | 1976 |   2464 |
+| japan       | datsun 810 maxima   | 1981 |   2930 |
+| japan       | toyota mark ii      | 1976 |   2930 |
+| sweden      | volvo diesel        | 1981 |   3160 |
+| uk          | triumph tr7 coupe   | 1980 |   2500 |
+| usa         | pontiac safari (sw) | 1971 |   5140 |
++-------------+---------------------+------+--------+
+8 rows in set (0.00 sec)
+
++---------------------------+-----------------------+
+| Campus                    | SUM(DE.Undergraduate) |
++---------------------------+-----------------------+
+| San Jose State University |                 21663 |
++---------------------------+-----------------------+
+1 row in set (0.00 sec)
+
++----------------------------+--------+
+| Campus                     | SumDeg |
++----------------------------+--------+
+| San Diego State University |  79376 |
++----------------------------+--------+
+1 row in set (0.00 sec)
+
++---------------------------------------------+--------------------+
+| Campus                                      | SF_Ratio           |
++---------------------------------------------+--------------------+
+| California State University-Channel Islands | 14.183783783783785 |
++---------------------------------------------+--------------------+
+1 row in set (0.00 sec)
+
++-------------------------+---------------+
+| Campus                  | PercentSocial |
++-------------------------+---------------+
+| Sonoma State University |       12.9307 |
++-------------------------+---------------+
+1 row in set (0.00 sec)
+
++-------------+------------------------------------------+
+| CurrentYear | Campus                                   |
++-------------+------------------------------------------+
+|        1998 | California State University-Monterey Bay |
+|        1999 | California  Maritime Academy             |
+|        2000 | California State University-Monterey Bay |
+|        2001 | California State University-Monterey Bay |
+|        2002 | California State University-Monterey Bay |
+|        2003 | California State University-Monterey Bay |
++-------------+------------------------------------------+
+6 rows in set (0.00 sec)
+
++------+---------------------------------------------------------+--------+
+| Year | Campus                                                  | Ratio  |
++------+---------------------------------------------------------+--------+
+| 1997 | Sonoma State University                                 | 0.2004 |
+| 1998 | California Polytechnic State University-San Luis Obispo | 0.2122 |
+| 1999 | California Polytechnic State University-San Luis Obispo | 0.2227 |
+| 2000 | California State University-San Marcos                  | 0.2142 |
+| 2000 | Humboldt State University                               | 0.1912 |
+| 2001 | Sonoma State University                                 | 0.2047 |
+| 2002 | California State University-Chico                       | 0.1912 |
+| 2003 | California Polytechnic State University-San Luis Obispo | 0.2665 |
++------+---------------------------------------------------------+--------+
+8 rows in set (0.00 sec)
+
++---------------------------------------------------------+------+--------------------+
+| Campus                                                  | Year | SF_Ratio           |
++---------------------------------------------------------+------+--------------------+
+| California  Maritime Academy                            | 2004 |  11.16517307345329 |
+| California Polytechnic State University-San Luis Obispo | 2003 |  17.63492549399371 |
+| California State Polytechnic University-Pomona          | 2002 | 18.281625643961075 |
+| California State University-Bakersfield                 | 2003 |  17.58296430498369 |
+| California State University-Channel Islands             | 2002 | 11.611569881862613 |
+| California State University-Chico                       | 2002 | 19.225902308415712 |
+| California State University-Dominguez Hills             | 2003 |  18.67162592986185 |
+| California State University-East Bay                    | 2004 | 18.592012086363802 |
+| California State University-Fullerton                   | 2003 |   18.3111288392501 |
+| California State University-Los Angeles                 | 2002 | 17.694527961515334 |
+| California State University-Monterey Bay                | 2002 | 21.016624861095256 |
+| California State University-Northridge                  | 2003 |  20.74972100987446 |
+| California State University-Sacramento                  | 2002 |  19.53629764065336 |
+| California State University-San Bernardino              | 2002 |  18.82396711943731 |
+| California State University-San Marcos                  | 2002 | 19.755510057086997 |
+| California State University-Stanislaus                  | 2003 |  18.52051546283395 |
+| Fresno State University                                 | 2004 | 20.993697333508145 |
+| Humboldt State University                               | 2002 | 16.058796734072384 |
+| Long Beach State University                             | 2002 |   18.1000699790063 |
+| San Diego State University                              | 2002 | 17.177476916336047 |
+| San Francisco State University                          | 2002 | 18.021818051673414 |
+| San Jose State University                               | 2002 |  18.35583864118896 |
+| Sonoma State University                                 | 2002 | 20.364832907586948 |
++---------------------------------------------------------+------+--------------------+
+23 rows in set (0.00 sec)
+
++------------------------------------------+
+| Campus                                   |
++------------------------------------------+
+| California State University-Monterey Bay |
++------------------------------------------+
+1 row in set (0.00 sec)
+
++----------------------+------+--------+
+| roomName             | Room | NumRes |
++----------------------+------+--------+
+| Convoke and sanguine | CAS  |     69 |
++----------------------+------+--------+
+1 row in set (0.00 sec)
+
++---------------------+------+------+
+| roomName            | Room | Days |
++---------------------+------+------+
+| Riddle to exculpate | RTE  |  190 |
++---------------------+------+------+
+1 row in set (0.00 sec)
+
++--------------------+------------+------------+----------+------+-----------+
+| roomName           | CheckIn    | CheckOut   | LastName | Rate | TotalPaid |
++--------------------+------------+------------+----------+------+-----------+
+| Frugal not apropos | 2010-06-19 | 2010-07-02 | DUB      |  225 |      2925 |
++--------------------+------------+------------+----------+------+-----------+
+1 row in set (0.00 sec)
+
++--------------------------+------------+------------+-----------+--------+-----------+
+| roomName                 | CheckIn    | CheckOut   | LastName  | Rate   | TotalPaid |
++--------------------------+------------+------------+-----------+--------+-----------+
+| Frugal not apropos       | 2010-06-19 | 2010-07-02 | DUB       |    225 |      2925 |
+| Convoke and sanguine     | 2010-03-19 | 2010-04-01 | PLYMEL    | 201.25 |   2616.25 |
+| Abscond or bolster       | 2010-07-15 | 2010-07-28 | STEBNER   |    175 |      2275 |
+| Interim but salutary     | 2010-03-07 | 2010-03-19 | PERRINO   |  187.5 |      2250 |
+| Immutable before decorum | 2010-01-12 | 2010-01-25 | BRODOWSKI |  172.5 |    2242.5 |
+| Recluse and defiance     | 2010-10-14 | 2010-10-25 | ALBROUGH  |  172.5 |    1897.5 |
+| Riddle to exculpate      | 2010-05-17 | 2010-05-29 | NEUZIL    |  157.5 |      1890 |
+| Mendicant with cryptic   | 2010-06-12 | 2010-06-22 | RANAUDO   | 156.25 |    1562.5 |
+| Harbinger but bequest    | 2010-01-06 | 2010-01-18 | CRACE     |    125 |      1500 |
+| Thrift and accolade      | 2010-05-30 | 2010-06-12 | EASTLING  |  86.25 |   1121.25 |
++--------------------------+------------+------------+-----------+--------+-----------+
+10 rows in set (0.00 sec)
+
++----------+--------+-----------+
+| Month    | NumRes | TotalPaid |
++----------+--------+-----------+
+| December |     65 |  33753.75 |
++----------+--------+-----------+
+1 row in set (0.00 sec)
+
++--------------------------+--------+----------------+
+| roomName                 | RoomId | OccupiedStatus |
++--------------------------+--------+----------------+
+| Abscond or bolster       | AOB    | Occupied       |
+| Convoke and sanguine     | CAS    | Empty          |
+| Frugal not apropos       | FNA    | Occupied       |
+| Harbinger but bequest    | HBB    | Empty          |
+| Immutable before decorum | IBD    | Occupied       |
+| Interim but salutary     | IBS    | Empty          |
+| Mendicant with cryptic   | MWC    | Occupied       |
+| Recluse and defiance     | RND    | Occupied       |
+| Riddle to exculpate      | RTE    | Occupied       |
+| Thrift and accolade      | TAA    | Occupied       |
++--------------------------+--------+----------------+
+10 rows in set (0.01 sec)
+
++--------------------------+-----------------+
+| roomName                 | COUNT(Res.Room) |
++--------------------------+-----------------+
+| Thrift and accolade      |               3 |
+| Mendicant with cryptic   |               3 |
+| Riddle to exculpate      |               4 |
+| Convoke and sanguine     |               4 |
+| Recluse and defiance     |               5 |
+| Frugal not apropos       |               5 |
+| Immutable before decorum |               5 |
+| Abscond or bolster       |               5 |
+| Interim but salutary     |               8 |
+| Harbinger but bequest    |              10 |
++--------------------------+-----------------+
+10 rows in set (0.00 sec)
+
++-------+------------+
+| State | StateCount |
++-------+------------+
+| RI    |        190 |
++-------+------------+
+1 row in set (0.00 sec)
+
++-------------+
+| Town        |
++-------------+
+| CRANSTON    |
+| CUMBERLAND  |
+| N KINGSTOWN |
+| N SCITUATE  |
+| PROVIDNCE   |
++-------------+
+5 rows in set (0.00 sec)
+
++-----------+-----------+---------+-------+-------+
+| FirstName | LastName  | Town    | State | Place |
++-----------+-----------+---------+-------+-------+
+| TED       | HARRELSON | WARWICK | RI    |    21 |
+| KEENAN    | LUSKIN    | WARWICK | RI    |    24 |
+| MELVIN    | BOUVIER   | WARWICK | RI    |   184 |
+| PAT       | MELLOY    | WARWICK | RI    |   267 |
++-----------+-----------+---------+-------+-------+
+4 rows in set (0.00 sec)
+
++-------+------------+------+-----------+
+| State | GroupRange | Sex  | NumPeople |
++-------+------------+------+-----------+
+| CT    | 20-39      | M    |         9 |
+| CT    | 40-49      | M    |         9 |
+| FL    | 40-49      | M    |         4 |
+| IN    | 20-39      | M    |         2 |
+| MA    | 20-39      | M    |        60 |
+| MO    | 40-49      | M    |         3 |
+| NC    | 20-39      | F    |         4 |
+| NH    | 40-49      | M    |         8 |
+| NJ    | 20-39      | F    |         2 |
+| NJ    | 20-39      | M    |         2 |
+| PA    | 20-39      | F    |         2 |
+| PA    | 20-39      | M    |         2 |
+| RI    | 20-39      | M    |        66 |
+| VT    | 20-39      | M    |         3 |
++-------+------------+------+-----------+
+14 rows in set (0.00 sec)
+
++-------+-----------+-------------+
+| Place | FirstName | LastName    |
++-------+-----------+-------------+
+|   213 | RAMONA    | GRAVENSTEIN |
++-------+-----------+-------------+
+1 row in set (0.00 sec)
+
++------------+-------+--------+
+| Grape      | Color | NumApp |
++------------+-------+--------+
+| Chardonnay | White |     23 |
+| Zinfandel  | Red   |     23 |
++------------+-------+--------+
+2 rows in set (0.00 sec)
+
++-----------------+
+| Grape           |
++-----------------+
+| Sauvignon Blanc |
++-----------------+
+1 row in set (0.00 sec)
+
++------------+
+| Grape      |
++------------+
+| Pinot Noir |
++------------+
+1 row in set (0.00 sec)
+
++----------------------+
+| Appellation          |
++----------------------+
+| Napa Valley          |
+| Russian River Valley |
++----------------------+
+2 rows in set (0.00 sec)
+
++------+--------+-------------------+-------+----------+
+| Year | Winery | Name              | Score | Revenue  |
++------+--------+-------------------+-------+----------+
+| 2008 | Caymus | Special Selection |    94 | 24364080 |
++------+--------+-------------------+-------+----------+
+1 row in set (0.00 sec)
+
+Empty set (0.00 sec)
+
++--------------+---------+
+| CarnerosWins | DCVWins |
++--------------+---------+
+|            3 |       2 |
++--------------+---------+
+1 row in set (0.00 sec)
+
++-------+
+| Cases |
++-------+
+|   698 |
++-------+
+1 row in set (0.00 sec)
+
++------+----------------------+
+| Year | Appellation          |
++------+----------------------+
+| 2004 | Mount Vedeer         |
+| 2004 | Russian River Valley |
+| 2005 | Oakville             |
+| 2005 | St. Helena           |
+| 2006 | Sta. Rita Hills      |
+| 2007 | Napa Valley          |
+| 2008 | Napa Valley          |
+| 2009 | Sonoma Coast         |
+| 2066 | Sonoma Coast         |
++------+----------------------+
+9 rows in set (0.00 sec)
+
++-----------+
+| FirstName |
++-----------+
+| Solveig   |
++-----------+
+1 row in set (0.00 sec)
+
++----------+
+| Title    |
++----------+
+| Overture |
++----------+
+1 row in set (0.00 sec)
+
++---------------------------------+
+| Title                           |
++---------------------------------+
+| I Will Dance (When I Walk Away) |
++---------------------------------+
+1 row in set (0.00 sec)
+
++------------+----------------+-----------+
+| FirstName  | Instrument     | NumPlayed |
++------------+----------------+-----------+
+| Anne-Marit | guitar         |        10 |
+| Marianne   | guitar         |        10 |
+| Marianne   | keyboards      |        10 |
+| Solveig    | drums          |        19 |
+| Turid      | bass balalaika |        22 |
++------------+----------------+-----------+
+5 rows in set (0.00 sec)
+
++--------------+
+| Instrument   |
++--------------+
+| dobro        |
+| small guitar |
++--------------+
+2 rows in set (0.00 sec)
+
++-----------+
+| FirstName |
++-----------+
+| Turid     |
++-----------+
+1 row in set (0.00 sec)
+
++------------+
+| Firstname  |
++------------+
+| Anne-Marit |
++------------+
+1 row in set (0.00 sec)
+
++----------------+
+| Instrument     |
++----------------+
+| bass balalaika |
++----------------+
+1 row in set (0.00 sec)
+
++----------------+
+| Instrument     |
++----------------+
+| bass balalaika |
++----------------+
+1 row in set (0.00 sec)
+

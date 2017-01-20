@@ -1,6 +1,0 @@
-checkSpace 0
-newStack
-checkSpace 0
-isEmpty?
-isStack? 0
-done

@@ -1,4 +1,0 @@
-alpha cstaley
-beta cstaley
-gamma cstaley
-delta cstaley

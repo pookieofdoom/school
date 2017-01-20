@@ -1,8 +1,0 @@
-*(fmt+VAL) = '\0'; 
-while ( fmt[1] != 'q' )
-{
-   printf("Enter a format specifier (x, X, c, d, i, o, or q to quit): ");
-   scanf(" %c", fmt+1);
-   if ( *(fmt+1) != 'q' )
-   printf(fmt, value);
-} 

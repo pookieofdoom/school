@@ -1,4 +1,0 @@
-SameId(void *v1, void *v2)
-{
-   return v1->id == v2->id;
-}

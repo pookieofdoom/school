@@ -1,9 +1,0 @@
-void SetupAll(int *i, int *a, int **aa, int ***aaa)
-{
-	*a = &i;
-	*aa = &a;
-	*aaa = &aa;
-}
-
-
-&i, &p, &pp, &ppp
